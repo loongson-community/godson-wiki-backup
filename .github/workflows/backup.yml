@@ -1,0 +1,38 @@
+name: Data Backup
+on:
+  push:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install deps
+        run: sudo apt-get install -y git wget git-restore-mtime
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: 'data'
+      
+      - uses: fregante/setup-git-user@v1
+          
+      - name: Restore mtime
+        run: git restore-mtime
+
+      - name: Mirror files from FTP
+        run: wget --mirror --ftp-user=${{ secrets.DATA_BACKUP_USER }} --ftp-password=${{ secrets.DATA_BACKUP_PASSWD }} --no-host-directories ftp://${{ secrets.DATA_BACKUP_HOST }}/{pages,meta,media,media_meta}
+
+      - name: Update timestmp
+        run: echo "$(date)" > timestamp
+
+      - name: Add and commit changes
+        run: |
+          git add *
+          git commit -am "Update backup"
+          
+      - name: Push changes
+        run: git push
