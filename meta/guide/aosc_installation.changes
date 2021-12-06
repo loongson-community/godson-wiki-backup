@@ -1,0 +1,16 @@
+1612693221	2604:a880:400:d0::1d4b:1001	C	guide:aosc_installation	windows1089	创建		44
+1612805580	2604:a880:2:d1::241:9001	E	guide:aosc_installation	windows1089			31
+1613296581	125.113.32.198	E	guide:aosc_installation	weilinfox			56
+1613301289	125.113.32.198	E	guide:aosc_installation	weilinfox			1935
+1613309958	207.46.137.2	E	guide:aosc_installation	weilinfox	完成AOSC安装指南		6100
+1613310795	207.46.137.2	E	guide:aosc_installation	weilinfox			61
+1613311048	207.46.137.2	e	guide:aosc_installation	weilinfox	修改 配置Locale 命令		-14
+1613313273	207.46.137.2	E	guide:aosc_installation	weilinfox	[从 AOSC OS/Retro 启动] 		121
+1613313470	207.46.137.2	E	guide:aosc_installation	weilinfox			54
+1613368887	240e:47a:4670:29f9:d844:549c:704e:6f79	E	guide:aosc_installation	windows1089	[初始化 RAM Dick] 修复typo		0
+1613833135	40.83.122.115	E	guide:aosc_installation	weilinfox			565
+1613880453	125.113.62.20	e	guide:aosc_installation	weilinfox	[绑定设备和系统路径] 		33
+1613883183	125.113.62.20	R	guide:aosc_installation	weilinfox	已恢复为旧版 (2021/02/20 14:58)	1613833135	1012
+1613982779	125.113.62.20	E	guide:aosc_installation	weilinfox	[如何安装Go] 添加golang二进制下载链接		134
+1613995652	125.113.62.20	E	guide:aosc_installation	weilinfox	修正 [设置时区] 没有安装 tzdata 的情况		144
+1614078974	125.113.47.241	E	guide:aosc_installation	weilinfox	添加一些deb包链接		398

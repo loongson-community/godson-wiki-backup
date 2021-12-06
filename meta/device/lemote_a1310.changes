@@ -1,0 +1,116 @@
+1539262926	185.215.224.138	C	device:lemote_a1310	flygoat	创建		27
+1539265944	182.149.105.157	e	device:lemote_a1310	sunfox	增加了快速安装手册第一部分		927
+1539267717	182.149.105.157	E	device:lemote_a1310	sunfox	增加快速安装手册内容		828
+1539267769	182.149.105.157	e	device:lemote_a1310	sunfox	[第一步：释放静电] 标点符号修订		-3
+1539268443	182.149.105.157	e	device:lemote_a1310	sunfox	添加机箱面板接线图片		40
+1539307358	205.252.237.195	e	device:lemote_a1310	flygoat			182
+1539307411	205.252.237.195	E	device:lemote_a1310	flygoat			4
+1539307431	205.252.237.195	E	device:lemote_a1310	flygoat			-3
+1539422897	182.149.105.157	E	device:lemote_a1310	sunfox	增加第四步安装显卡		165
+1539427742	182.149.105.157	E	device:lemote_a1310	sunfox	完成快速安装手册，加入故障排除手册		2406
+1539428224	182.149.105.157	e	device:lemote_a1310	sunfox	[第三步：连接主板接口] 增加关于电源问题的反馈		80
+1539428496	182.149.105.157	E	device:lemote_a1310	sunfox	修改栏目名称、增加系统安装指南和技术手册		66
+1539443966	182.149.105.128	e	device:lemote_a1310	sunfox	[第五步：安装显卡] 增加显卡列表，添加注解		446
+1539444396	182.149.105.128	e	device:lemote_a1310	sunfox	[第三步：连接主板接口] 更新cpu供电口内容		82
+1539444693	171.216.61.27	e	device:lemote_a1310	sunfox	[第五步：安装显卡] 更新r7_350的状态		29
+1539444998	171.216.61.27	e	device:lemote_a1310	sunfox	[第五步：安装显卡] 添加注释		92
+1539445900	171.216.61.27	E	device:lemote_a1310	sunfox	[故障排除手册] 添加排障表与附录		605
+1539446874	171.216.61.27	e	device:lemote_a1310	sunfox	排版微调、文字微调、增加高度主板数据		18
+1539447522	171.216.61.27	E	device:lemote_a1310	sunfox	[排障表] 增加内容		167
+1539448080	171.216.61.27	E	device:lemote_a1310	sunfox	[系统安装快速指南] 添加可用系统部分		404
+1539449094	171.216.61.27	E	device:lemote_a1310	sunfox	添加注释、更新排障表		348
+1539476373	171.210.69.8	E	device:lemote_a1310	sunfox	增加显卡安装步骤，更新排障表		732
+1539476546	171.210.69.8	e	device:lemote_a1310	sunfox	[第五步：安装显卡] 修改字词		-7
+1539476733	171.210.69.8	E	device:lemote_a1310	sunfox	[排障表] 格式修复		1
+1539477041	171.210.69.8	E	device:lemote_a1310	sunfox	[第五步：安装显卡] 更新注3		136
+1539496442	182.149.105.231	E	device:lemote_a1310	sunfox	[第三步：连接主板接口] SATA接口数量更正		0
+1539496987	171.93.253.30	E	device:lemote_a1310	sunfox	[目前可用系统] 更正系统介绍		13
+1539500155	171.93.253.30	E	device:lemote_a1310	sunfox	[第五步：安装显卡] 更新注释		141
+1539500257	171.93.253.30	e	device:lemote_a1310	sunfox	[第五步：安装显卡] 排版修复		6
+1539500420	171.93.253.30	E	device:lemote_a1310	sunfox	[第五步：安装显卡] 更新注释		0
+1539501040	171.93.253.30	E	device:lemote_a1310	sunfox	[第五步：安装显卡] 更新注释		384
+1539501123	171.93.253.30	e	device:lemote_a1310	sunfox	[第五步：安装显卡] 错字修改		0
+1539514974	182.149.105.231	E	device:lemote_a1310	sunfox	启动卡死问题解决方法更新		63
+1539532275	182.149.105.160	E	device:lemote_a1310	sunfox	[系统安装快速指南]更新了软件源的介绍与设置		2762
+1539532736	182.149.105.160	e	device:lemote_a1310	sunfox	[Linux技术笔记] 完善排版		2
+1539611204	171.210.126.202	E	device:lemote_a1310	sunfox	[第三步：连接主板接口] 更新USB接口与面板音频接口信息		-27
+1539611298	171.210.126.202	e	device:lemote_a1310	sunfox	[第三步：连接主板接口] 排版修复		24
+1539672724	182.149.105.154	E	device:lemote_a1310	sunfox	[快速安装手册]补充CPU电源接口；[主板技术手册]添加尺寸数据		197
+1539694693	182.149.105.179	E	device:lemote_a1310	sunfox	[第三步：连接主板接口] 修订BIOS/CMOS跳线内容		102
+1539757639	171.209.170.118	E	device:lemote_a1310	sunfox	[Linux技术笔记] 更新ffmpeg与vlc的安装		352
+1539759202	182.149.105.155	E	device:lemote_a1310	sunfox	[Linux技术笔记] 补充vlc安装		280
+1539854536	117.173.86.9	E	device:lemote_a1310	sunfox	[第五步：安装显卡] 更新显卡列表		30
+1540216197	183.212.143.121	E	device:lemote_a1310	m	[尺寸数据] 		700
+1540355824	182.149.105.214	E	device:lemote_a1310	sunfox	[尺寸数据] 更新CPU底座		34
+1540446122	182.149.105.145	E	device:lemote_a1310	sunfox	[第五步：安装显卡] 更新显卡列表		37
+1540455293	118.115.198.10	E	device:lemote_a1310	sunfox	[Linux技术笔记] 增加昆仑固件说明		124
+1540642595	223.67.143.73	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用PMON固件] 		2395
+1540642948	223.67.143.73	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用PMON固件] 		9
+1540643506	223.67.143.73	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开核的PMON固件] 		16
+1540643620	223.67.143.73	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开核的PMON固件] 		-3
+1540645385	223.67.143.73	E	device:lemote_a1310	m	[目前可用系统] 		-15
+1540654387	223.67.143.73	E	device:lemote_a1310	m	[系统安装流程] 		667
+1540654456	223.67.143.73	E	device:lemote_a1310	m	[系统安装流程] 		1
+1540655373	223.67.143.73	E	device:lemote_a1310	m	[附录：昆仑固件警报声含义表] 		654
+1540655731	223.67.143.73	E	device:lemote_a1310	m	[测试视频] 		82
+1540655850	223.67.143.73	E	device:lemote_a1310	m	[尺寸数据] 		56
+1540656577	223.67.143.73	E	device:lemote_a1310	m	[测试视频] 		220
+1540657316	223.67.143.73	E	device:lemote_a1310	m	[测试视频] 		92
+1540706607	223.67.143.73	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开核的PMON固件] 		705
+1540706648	223.67.143.73	e	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		1
+1540706682	223.67.143.73	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		1
+1540707196	223.67.143.73	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		398
+1540713994	223.67.143.73	E	device:lemote_a1310	m	[目前可用系统] 		-79
+1540714618	223.67.143.73	E	device:lemote_a1310	m	[Linux技术笔记] 		415
+1540714640	223.67.143.73	E	device:lemote_a1310	m	[Linux技术笔记] 		3
+1540715135	223.67.143.73	E	device:lemote_a1310	m	[Linux技术笔记] 		351
+1540728541	223.67.143.73	E	device:lemote_a1310	m	[电压数据] 		533
+1540728695	223.67.143.73	E	device:lemote_a1310	m	[电压电流数据] 		141
+1540728796	223.67.143.73	E	device:lemote_a1310	m	[电压电流数据] 		-24
+1540732118	223.67.143.73	E	device:lemote_a1310	m	[第五步：安装显卡] 		-75
+1540776139	140.243.89.45	E	device:lemote_a1310	darklex	[第四步：安装内存] 		55
+1540776207	140.243.89.45	e	device:lemote_a1310	darklex	[第四步：安装内存] 		-1
+1540960254	127.0.0.1	E	device:lemote_a1310		外部编辑		0
+1541078687	223.67.129.223	E	device:lemote_a1310	m	[电压电流数据] 		-39
+1541171436	223.67.150.102	E	device:lemote_a1310	m	[Linux技术笔记] 		281
+1541171509	223.67.150.102	E	device:lemote_a1310	m	[Linux技术笔记] 		23
+1541171673	223.67.150.102	E	device:lemote_a1310	m	[Linux技术笔记] 		22
+1541220888	117.136.67.40	E	device:lemote_a1310	m	[Linux技术笔记] 		284
+1541221511	117.136.67.40	E	device:lemote_a1310	m	[Linux技术笔记] 		47
+1541226036	223.67.150.102	E	device:lemote_a1310	m	[Linux技术笔记] 		1
+1541244580	223.67.150.102	E	device:lemote_a1310	m	[Linux技术笔记] 		67
+1541244864	223.67.150.102	E	device:lemote_a1310	m	[排障表] 		193
+1541244920	223.67.150.102	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用PMON固件] 		-87
+1541249295	223.67.150.102	E	device:lemote_a1310	m	[Linux技术笔记] 		93
+1541256804	223.67.150.102	E	device:lemote_a1310	m	[Linux技术笔记] 		100
+1541257745	223.67.150.102	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		0
+1541257974	223.67.150.102	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		0
+1541261255	223.67.150.102	E	device:lemote_a1310	m	[Linux技术笔记] 		133
+1541466228	140.243.90.229	E	device:lemote_a1310	darklex	[第五步：安装显卡] 		31
+1542020059	106.8.181.199	E	device:lemote_a1310	难得糊涂	[第五步：安装显卡] 		47
+1542021280	106.8.181.199	E	device:lemote_a1310	难得糊涂	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		384
+1542071147	106.8.181.199	E	device:lemote_a1310	难得糊涂	[Linux技术笔记] 		137
+1542285780	183.212.143.135	e	device:lemote_a1310	m	[Linux技术笔记] 		142
+1542373630	106.8.189.252	E	device:lemote_a1310	难得糊涂	[Linux技术笔记] 		141
+1543676472	223.67.129.189	E	device:lemote_a1310	m	[系统安装流程] 		118
+1543676521	223.67.129.189	E	device:lemote_a1310	m	[系统安装流程] 		-3
+1543676560	223.67.129.189	E	device:lemote_a1310	m	[系统安装流程] 		7
+1543676923	223.67.129.189	E	device:lemote_a1310	m	[Linux技术笔记] 		-354
+1543677685	223.67.129.189	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		245
+1543677753	223.67.129.189	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		123
+1543719502	161.117.2.250	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		2
+1543719609	47.254.74.70	E	device:lemote_a1310	m	[【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核] 		57
+1554984221	180.115.94.109	E	device:lemote_a1310	windows1089			1386
+1555227006	180.115.94.109	E	device:lemote_a1310	windows1089			777
+1555227844	180.115.94.109	E	device:lemote_a1310	windows1089			122
+1555228339	180.115.94.109	E	device:lemote_a1310	windows1089			31
+1570955936	121.231.145.17	E	device:lemote_a1310	windows1089			-964
+1570956069	121.231.145.17	E	device:lemote_a1310	windows1089			0
+1570957011	121.231.145.17	E	device:lemote_a1310	windows1089			288
+1580540903	114.228.235.111	E	device:lemote_a1310	windows1089			-968
+1580631203	121.231.152.243	E	device:lemote_a1310	windows1089			700
+1583638349	121.231.107.130	E	device:lemote_a1310	windows1089			123
+1583638525	121.231.107.130	E	device:lemote_a1310	windows1089			-16
+1583646030	121.231.107.130	E	device:lemote_a1310	windows1089			111
+1583758759	121.231.107.130	E	device:lemote_a1310	windows1089			12
+1612700454	2604:a880:400:d0::1d4b:1001	E	device:lemote_a1310	windows1089			-6

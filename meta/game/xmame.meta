@@ -1,0 +1,23 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1612710147;s:8:"modified";i:1612715091;}s:7:"creator";s:10:"龙芯fans";s:4:"user";s:11:"leonardkong";s:11:"last_change";a:8:{s:4:"date";i:1612715091;s:2:"ip";s:14:"180.115.202.69";s:4:"type";s:1:"E";s:2:"id";s:10:"game:xmame";s:4:"user";s:11:"windows1089";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:242;}s:11:"contributor";a:2:{s:11:"leonardkong";s:10:"龙芯fans";s:11:"windows1089";s:11:"windows1089";}s:5:"title";s:32:"Xmame街机模拟器编译安装";s:11:"description";a:2:{s:15:"tableofcontents";a:10:{i:0;a:4:{s:3:"hid";s:32:"xmame街机模拟器编译安装";s:5:"title";s:32:"Xmame街机模拟器编译安装";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:15:"游戏rom下载";s:5:"title";s:15:"游戏ROM下载";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:2;a:4:{s:3:"hid";s:18:"编译安装步骤";s:5:"title";s:18:"编译安装步骤";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:3;a:4:{s:3:"hid";s:17:"下载xmame源码";s:5:"title";s:21:"1、下载Xmame源码";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:4;a:4:{s:3:"hid";s:14:"修改makefile";s:5:"title";s:18:"2、修改makefile";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:5;a:4:{s:3:"hid";s:24:"安装编译需要的库";s:5:"title";s:28:"3、安装编译需要的库";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:6;a:4:{s:3:"hid";s:6:"编译";s:5:"title";s:10:"4、编译";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:7;a:4:{s:3:"hid";s:12:"运行游戏";s:5:"title";s:16:"5、运行游戏";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:8;a:4:{s:3:"hid";s:12:"键盘操作";s:5:"title";s:16:"6、键盘操作";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:9;a:4:{s:3:"hid";s:6:"参考";s:5:"title";s:6:"参考";s:4:"type";s:2:"ul";s:5:"level";i:1;}}s:8:"abstract";s:336:"Xmame街机模拟器编译安装
+
+游戏ROM下载
+
+<http://www.kuaihou.com/s/jiejiroms/>
+
+编译安装步骤
+
+1、下载Xmame源码
+
+下载地址：<https://github.com/RobinDX/xmame>
+
+在终端中输入：
+
+
+$git clone https://github.com/RobinDX/xmame.git
+
+$cd xmame
+
+
+2、修改makefile
+
+579行：MY_CPU = i386 改为 MY_CPU = risc_lsb";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1612710147;s:8:"modified";i:1612715091;}s:7:"creator";s:10:"龙芯fans";s:4:"user";s:11:"leonardkong";s:11:"last_change";a:8:{s:4:"date";i:1612715091;s:2:"ip";s:14:"180.115.202.69";s:4:"type";s:1:"E";s:2:"id";s:10:"game:xmame";s:4:"user";s:11:"windows1089";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:242;}s:11:"contributor";a:2:{s:11:"leonardkong";s:10:"龙芯fans";s:11:"windows1089";s:11:"windows1089";}}}

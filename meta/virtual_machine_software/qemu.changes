@@ -1,0 +1,21 @@
+1582597967	114.227.59.221	C	virtual_machine_software:qemu	windows1089	创建		1040
+1582599069	114.227.59.221	E	virtual_machine_software:qemu	windows1089			487
+1582599289	114.227.59.221	E	virtual_machine_software:qemu	windows1089			53
+1582599319	114.227.59.221	e	virtual_machine_software:qemu	windows1089			1
+1582602703	114.227.59.221	E	virtual_machine_software:qemu	windows1089			2950
+1582602746	114.227.59.221	E	virtual_machine_software:qemu	windows1089			12
+1582602768	114.227.59.221	E	virtual_machine_software:qemu	windows1089			64
+1582603613	114.227.59.221	E	virtual_machine_software:qemu	windows1089			2616
+1582603676	114.227.59.221	E	virtual_machine_software:qemu	windows1089			1
+1582619445	114.227.59.221	E	virtual_machine_software:qemu	windows1089			2
+1582703041	114.227.59.221	E	virtual_machine_software:qemu	windows1089			1
+1582703187	114.227.59.221	E	virtual_machine_software:qemu	windows1089			-3
+1583556790	121.231.107.130	E	virtual_machine_software:qemu	windows1089			1931
+1583575602	121.231.107.130	E	virtual_machine_software:qemu	windows1089			-54
+1583580260	121.231.107.130	e	virtual_machine_software:qemu	windows1089			2
+1583636337	121.231.107.130	E	virtual_machine_software:qemu	windows1089			7
+1583919486	114.226.97.121	E	virtual_machine_software:qemu	windows1089			361
+1583919537	114.226.97.121	E	virtual_machine_software:qemu	windows1089			3
+1583921115	114.226.97.121	E	virtual_machine_software:qemu	windows1089			151
+1583921144	114.226.97.121	E	virtual_machine_software:qemu	windows1089			0
+1612498243	2604:a880:400:d0::1ac0:5001	E	virtual_machine_software:qemu	windows1089			-3713

@@ -1,0 +1,14 @@
+-rw-r--r--    1 godsonac   godsonac           67 Sep 30  2019 %E9%A6%96%E9%A1%B5.changes
+-rw-r--r--    1 godsonac   godsonac            1 Sep 30  2019 %E9%A6%96%E9%A1%B5.indexed
+-rw-r--r--    1 godsonac   godsonac         1078 Sep 30  2019 %E9%A6%96%E9%A1%B5.meta
+drwxr-xr-x    2 godsonac   godsonac          328 Sep 30  2019 .
+drwxr-xr-x   19 godsonac   godsonac         4096 Nov  1 06:26 ..
+-rw-r--r--    1 godsonac   godsonac           66 Sep 30  2019 clang.changes
+-rw-r--r--    1 godsonac   godsonac            1 Sep 30  2019 clang.indexed
+-rw-r--r--    1 godsonac   godsonac         1076 Sep 30  2019 clang.meta
+-rw-r--r--    1 godsonac   godsonac           64 Sep 30  2019 gcc.changes
+-rw-r--r--    1 godsonac   godsonac            1 Sep 30  2019 gcc.indexed
+-rw-r--r--    1 godsonac   godsonac         1064 Sep 30  2019 gcc.meta
+-rw-r--r--    1 godsonac   godsonac           65 Sep 30  2019 llvm.changes
+-rw-r--r--    1 godsonac   godsonac            1 Sep 30  2019 llvm.indexed
+-rw-r--r--    1 godsonac   godsonac         1070 Sep 30  2019 llvm.meta
