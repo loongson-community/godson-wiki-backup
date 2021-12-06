@@ -1,0 +1,6 @@
+====== List of Errata ======
+
+  * [[errata:diei|Errata:diei]]
+  * [[errata:llsc|Errata:llsc]]
+  * [[errata:rtc_leakage|Errata:RTC_Leakage]]
+  * [[errata:fused_madd|Errata:fused_madd]]

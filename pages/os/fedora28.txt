@@ -1,0 +1,12 @@
+====== OS:Fedora28 ======
+
+目前龙芯版Fedora28由航天龙梦制作，已经发布正式版。
+
+其二进制Flag为 ''march=loongson3a'' ， 适用于GS464(R2)之后的所有64位龙芯处理器。
+
+可以点击[[http://mirror.lemote.com:8000/fedora/fedora28-live/|此处]]在官方源内进行下载
+
+下载后请务必自行核验MD5以确保文件完整性。
+
+
+

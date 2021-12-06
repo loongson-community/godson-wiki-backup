@@ -1,0 +1,58 @@
+======CLion======
+
+CLion 是 JetBrains 公司推出的 C/C++ 集成开发环境。它基于 IntelliJ 平台开发，支持 JetBrains 的插件体系，可以在龙芯OpenJDK上比较好地运行。由于 CLion 并没有发布社区版本，使用它需要购买相应的许可证。
+
+CLion 很多功能依赖自带的 clang 二进制，如果要实现所有功能可能需要重新编译 clang 并放置在对应目录，但是似乎还没有人进行过过尝试。语法检查、高亮等基础功能的实现 CLion 提供了调用外部 clang-tiny 的选项。
+
+运行所需配置和 IntelliJ IDEA 基本一致：如果运行最新的 CLion 需要使用龙芯OpenJDK13并自行编译 fsNotifier ；如果使用较旧的版本只需使用龙芯OpenJDK8并自行编译 fsNotifier 和 pty4j-native 。具体可以参考 [[programming_software_ide:intellij_idea|IntelliJ IDEA]] 页面进行安装和配置。
+
+经测试，龙芯OpenJDK8可以正常运行的CLion版本为 2019.3.6 。
+
+=====C/C++编译器=====
+
+CLion 除了依赖 gcc ，还需要安装 cmake 。
+
+====从软件源中安装====
+
+===Debian系===
+
+  sudo apt-get update
+  sudo apt-get install cmake gcc g++
+
+===RadHat系===
+
+  sudo dnf update
+  sudo dnf install cmake gcc gcc-c++
+
+在 Fedora28 中最新的 gcc 版本为 8.4.0 ， cmake 版本为 3.11.2 。
+
+=====CLion=====
+
+====安装====
+
+从 JetBrains [[https://www.jetbrains.com/clion/download/#section=linux|官网页面]]下载最新的 CLion ，或者从“[[https://www.jetbrains.com/clion/download/other.html|其他版本]]” 下载较旧版本的 CLion 。经测试，龙芯OpenJDK8可以正常运行的CLion版本为 2019.3.6 。
+
+将软件包解压并放置在你喜欢的地方，运行之并按提示进行默认配置：
+
+  cd bin
+  ./clion.sh
+
+====配置编译器====
+
+在 “File->Settings->Build,Excution,Deployment->Toolchains” 或 “Customize->All Settings->Build,Excution,Deployment->Toolchains” 选择各个二进制，他们通常在 /bin 和 /usr/bin 目录中。如果配置正确， CLion 会自动检测并显示版本。
+
+====配置语法解析====
+
+我们首先需要安装 clang：
+
+  $ sudo dnf install clang clang-tools-extra
+
+我们需要禁用自带的 clangd 并启用 clang-tiny 。两个配置均在 “File->Settings->Languages & Frameworks->C/C++” 或 “Customize->All Settings->Languages & Frameworks->C/C++” 中。
+
+首先在 Clangd 下取消所有选框，并设置 Code Complement 为 Disable Clangd Complement 。
+
+然后在 Clang-Tiny 下勾选 Use external Clang-Tiny instead of the build-in one ，并设置 clang-tiny 的路径。通常 clang-tiny 可以在下面路径找到：
+
+  /bin/clang-tidy
+
+当前 CLion 支持的 clang-tiny 版本 >7.0.0 。

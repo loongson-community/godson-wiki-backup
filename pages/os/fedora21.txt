@@ -1,0 +1,20 @@
+====== OS:Fedora21 ======
+
+Fedora21是龙芯官方目前主要进行支持的 Linux 发行版，许多厂商都针对其进行了大量的移植与优化。
+
+其二进制 Flag 为 ''-march=loongson3a'' ，适用于GS464(R2)之后的所有64位龙芯处理器。
+
+目前Fedora21主要有两个分支，分别由航天龙梦与龙芯中科维护。
+
+===== Lemote FC21 =====
+
+此分支由航天龙梦维护，采用的内核与基础软件较新且稳定，但是也缺乏部分必要的软件，例如 WPS。
+
+航天龙梦没有专门为此设立的发布页面，其安装用 LiveCD ISO 可以于[[http://mirror.lemote.com:8000/fedora/live/|此处]]下载。
+
+===== Loongnix =====
+主条目：[[os:loongnix|Loongnix]]
+
+此分支由中科龙芯维护，使用较老的 Linux-3.10 内核与 GCC-4.9 工具链（官方也提供了 devtoolset7-gbd 这个 GCC-8.0 工具链，具体使用方法可参见[[http://www.loongnix.org/index.php/Devtoolset-7|官方页面]]）。
+
+详情可以参见其 [[http://www.loongnix.org/index.php/Loongnix|官方页面]]。

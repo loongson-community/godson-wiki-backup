@@ -1,0 +1,52 @@
+====== Linux串口编程 ======
+===== 前言 =====
+大部分情况下，我们在龙芯平台上运行Linux操作系统。而串口则是设备间通讯常用的方式，本文主要探讨如何在Linux平台下对串口进行编程。
+===== 概念 =====
+Linux下大部分接口都被抽象成了文件系统中的文件，串口也不例外。串口所抽象成的文件位于/dev下，为/dev/tty* (例如/dev/ttyS1为设备Native的串口，/dev/ttyUSB1为通过USB转接的串口)。我们可以通过操作文件系统的方法来对串口进行打开 初始化 发送接收 关闭 等一系列操作。
+
+请注意，对于龙芯1C等设备，在使用串口前需要在内核中正确的设置引脚复用。
+
+===== 编程 =====
+==== POSIX API ====
+
+使用来自POSIX的API对文件进行操作以操作串口，此种方法网络上有较多的教程描述，可以参考：
+  * [[https://www.ibm.com/developerworks/cn/linux/l-serials/index.html|Linux 下串口编程入门]]
+  * [[https://blog.csdn.net/tigerjibo/article/details/6179291|Linux下的串口编程(二）]]
+
+==== 调用Shell ====
+Linux Shell中有很多现有的串口收发程序，通过shell直接操作这些程序可以显著减小编程难度，但是相应的效率可能会不高。
+此种方法主要由刘工总结。
+
+直接发送
+   ''echo -ne "\x55" >/dev/ttyS2''
+
+你要用ttyS2来接设备的话，要把ttyS2的控制台关掉
+
+想接收收到的返回，用microcom,
+''echo -ne "\x55" | microcom -t 1000 -s 115200 /dev/ttyS2''
+这可以把返回显示出来
+
+要把返回字符串放进变量，
+
+''ret=`echo -ne "\x55" | microcom -t 1000 -s 115200 /dev/ttyS2`
+&&echo $ret''
+
+如果收到的是16进制，这样做：
+
+''echo -ne "\x55" | microcom -t 1000 -s 115200 /dev/ttyS2|hexdump -v -e '/1 "%02X" '''
+
+
+
+shell没有Modbus功能，所以用C写了个Modbus_read，方便shell调用，
+
+
+''ret = `modbus /dev/ttyS10 9600 1 0   "%f"`''
+
+    读出设备1的0号寄存器的浮点，给变量$ret
+
+
+
+
+
+
+

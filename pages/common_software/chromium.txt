@@ -1,0 +1,38 @@
+====== Chromium 浏览器 ======
+===== 下载安装浏览器 =====
+==== 从源内安装 ====
+=== 龙梦 Fedora28 ===
+龙梦的 chromium73 自带 4K 硬解驱动，可流畅观看网页 1080p 视频（ HTML5 ）（需显卡支持硬解 4K 才能真正做到硬解 4K 视频，如只能硬解 2K 则只能硬解 2K 。能硬解 4K 的最低级显卡为 AMD RX550）。如需使用，可直接在终端输入：
+<code>
+$sudo dnf install chromium
+</code>
+随后再安装 mesa 驱动和 vaapi 、 vdpau 驱动
+<code>
+$sudo dnf install libva-utils mesa-dri-drivers libvdpau-va-gl
+</code>
+即可享受流畅的网页视频播放。
+===龙芯中科 Loongnix ===
+直接在终端输入：
+<code>
+$sudo yum install chromium
+</code>
+即可下载安装
+<WRAP center round info 60%>
+>注：直到 Loongnix20190630 版自带的龙芯中科版 chromium60 还未自带 AMD 显卡硬解驱动，在老平台（ 3A3000及以下）只能做到流畅播放720p。
+</WRAP>
+
+==== 直接下载安装 ====
+FlyGoat 版 chromium82 beta 下载链接：
+<WRAP center round download 60%>
+[[https://share.weiyun.com/5gPSlBS|RPM 版]]|
+[[http://okapps.oukan.online/lroapps/deb-loongson/chromium-browser-beta_82.0.4051.0-1_mips64el.deb|DEB 版]]
+</WRAP>
+下载完后在下载文件的所在目录在终端中输入指令进行安装。
+RedHat 系发行版如下：
+<code>
+#yum localinstall chromium-82-fg-beta2.rpm
+</code>
+Debian 系发行版如下：
+<code>
+#apt-get install chromium-browser-beta_82.0.4051.0-1_mips64el.deb
+</code>

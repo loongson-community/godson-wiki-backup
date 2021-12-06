@@ -1,0 +1,16 @@
+====== IP Blocks ======
+Here are some descriptions about IP blocks used in Loongson processors.
+
+==== System ====
+  * [[ip_block:liointc|Local Interrupt Controller]]
+  * PLL
+
+==== Connectivity ====
+  * Ethernet MAC
+
+==== Multimedia ====
+  * HDA
+  * AC97
+  * I2S
+  * Display Controller
+  * Vivante GC1000

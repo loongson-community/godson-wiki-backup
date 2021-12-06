@@ -1,0 +1,35 @@
+====== 教程列表 ======
+===== 通用 =====
+====操作系统安装====
+  *[[guide:fedora_installation|RedHat 系发行版安装指南]]
+  *[[guide:debian_installation|Debian 系发行版安装指南]]
+  *[[guide:aosc_installation|AOSC 系发行版安装指南]]
+  *[[guide:gentoo_installation|Gentoo 安装指南]]
+====百科使用手册====
+  *[[gw:help|狗剩百科使用手册]]
+====FAQ====
+  *[[general_faq|龙芯总FAQ]]
+====其他====
+  *[[guide:samba_fc28|Samba on FC28]]
+  *[[linux串口编程|Linux串口编程]]
+===== 龙芯1号系列 =====
+==== 龙芯1C ====
+=== 龙芯1C0300 ===
+  *[[device:loongson_1c|智龙开源主板]]
+===== 龙芯2号系列 =====
+==== 龙芯2F ====
+  *[[device:lemote_8089|Lemote 8089]]
+==== 龙芯2H ====
+  *//敬请期待//
+==== 龙芯2K ====
+=== 龙芯2K1000 ===
+  *[[device:loongson_pi_2|龙芯派2代]]
+===== 龙芯3号系列 =====
+==== 龙芯3A ====
+=== 龙芯3A4000 ===
+  *[[device:lemote_a1901|Lemote A1901]]
+==== 龙芯3B ====
+=== 龙芯3B1500 ===
+  *[[device:lemote_a1310|Lemote A1310]]
+==== 龙芯3C ====
+  *//敬请期待//

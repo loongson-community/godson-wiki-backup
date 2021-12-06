@@ -1,0 +1,145 @@
+======Lemote A1901======
+龙梦 A1901 主板，正式商业型号为 LX-6901，是目前消费市场上常见的搭载龙芯3A4000的主板。
+=====主板技术手册=====
+主板说明书下载：
+<WRAP center round download 60%>
+{{ :device:lx-6901主板说明书.pdf |LX-6901主板说明书}}
+</WRAP>
+
+====主板信息====
+{{:device:a1901主板实物及其相关接口信息.jpg?600|}}
+{{:device:a1901主板概览.png?600|}}
+|1|LPC|11|SATA2-2|
+|2|SYS-FAN|12|SATA2-1|
+|3|EJTAG|13|EC DEBUG|
+|4|CPU-FAN|14|FRONT PANEL|
+|5|ATX-12V-4PIN|15|FRONT USB2.0|
+|6|ATX-24PIN|16|FRONT USB3.0|
+|7|SYS-FAN|17|FRONT AUDIO|
+|8|SATA3-0(未上件)|18|BIOS烧录排孔|
+|9|SATA3-1(未上件)|19|Bios&冗余bios切换开关|
+|10|FINGER TOUCH|20|RTC 跳线帽|
+{{:device:主板结构图.png?600|}}
+{{:device:后置面板接口.png?600|}}
+
+===CPU 散热孔距===
+主板上的散热孔距为标准的 Intel LGA115x 孔距，可选兼容 LGA115x 的散热器及其底座。
+<WRAP center round important 60%>
+>注：在固定底座时请把主板自带的背板拆去，以免无法安装底座。
+</WRAP>
+
+
+===机箱面板接口===
+主板上的9针接口为开机键、复位键、电源灯、硬盘灯的接口。其接线定义如下：
+|硬盘灯+|1|2|电源灯+|
+|硬盘灯-|3|4|电源灯-|
+|重启键|5|6|电源键|
+|重启键|7|8|电源键|
+|无连接|9| |（此处无插针）|
+{{:device:机箱面板接线.jpg?400|}}\\
+
+===M.2接口===
+主板有一个 M.2 接口，位于CPU与 PCIe 2.0 x16 接口中间，本身同时支持 NGFF （ SATA 信号）和 NVME （ PCIe 信号）协议。
+
+阅读说明书可知这个 M.2 接口只连接了一条 PCIe 通道，而众所周知 PCIe 2.0 x1 比 SATA 3.0 带宽还低…… 不知道为什么该主板采用了这种奇怪设计，如果要使用 NVME 固态建议搞一个转接卡插在 PCIe x4 插槽上 (实测固件可以引导转接卡连接的 NVME 盘中的系统)。
+=== USB 接口===
+USB 接口线序为通用标准。
+<WRAP center round important 60%>
+>注： USB 接线错误有损坏主板和USB设备的可能，接线时需要注意线序。
+</WRAP>
+
+=== SATA 接口===
+主板上有2个 SATA2.0 接口,还有2个 SATA3.0 接口未引出。\\
+<WRAP center round important 60%>
+>注：SATA接口比较脆弱，不建议频繁插拔。
+</WRAP>
+
+===面板音频接口===
+面板音频接口线序为通用标准。
+
+=== RS232 串口===
+主板提供了一个 RS232 串口。可通过 RS232 串口线接收主板固件启动信息，为维修提供参考。
+
+=== DDR4模组 (DDR4 Modules) ===
+
+龙芯自行设计的DDR4控制器与部分内存条有兼容性问题，下面我们将列出已知兼容的DDR4模组。
+
+一般而言，大部分DDR4模组都可以点亮机器，但部分可能不能稳定地工作。 莫名其妙的死机，内核报RCU Stall或stack corruption错是内存稳定性问题的通常表现。
+
+Loongson's in-house DDR4 controller has some compatibility issue with various DDR4 modules, here is DDR4 modules known to be work with this board.
+
+Generally, with most DDR4 modules, the system can boot successfully, But some of them appear to be unstable.
+
+Unexpected hang, kernel RCU stall warning or kernel stack corruption warning usually indicate memory stability issue.
+
+== 官方列表 (Official List) ==
+
+龙梦确认的兼容列表。
+
+Modules confirmed by Lemote.
+
+|Vendor	Product |Name	|P/N|
+|Apacer (宇瞻)	|8GB UNB DDR4 2400 CL17	|D13.2224CH.002|
+|UniIC (紫光)	|8GB 1Rx8 PC4-2666U-19-19-19	|SCC08GU03H1F1C-26V|
+
+== 社区列表 (Community List) ==
+
+已知大部分使用镁光C9BJZ颗粒的内存都能工作的比较完美。
+
+以下是社区测试过的DDR4内存模块。
+
+It is known that modules with Micron's C9BJZ chip usually work well on this board.
+
+Here is a list of DDR4 modules verified by the community.
+
+|Vendor	|Product Name	|P/N	|Tester	|Notes|
+|Micron	|8GB 1Rx8 PC4-2666V-UA2-11	|MTA8ATF1G64AZ-2G6E1	|Jiaxun Yang	|
+|Crucial	|8GB DDR4-2400 UDIMM 1.2V CL17	|CT8G4DFS824A.C8FDD1	|lxiao	|
+|Kingston	|16GB 2Rx8 HyperX Fury	|HX426C16FB3/16 SP	|WANG Xuerui	|
+|UniIC	|8GB 2Rx8 PC4-2400U-17-17-17	|SCE08GU13A1F1C-24T	|XI Ruoyao	|使用一条时正常工作，使用两条时死机。 不确定是 dual rank 的通病还是个例。 Using only one module is stable, but two modules lead to system freeze. Not sure if it's same for other dual rank modules.|
+|UniIC	|8GB 2Rx8 PC4-2666U-19-19-19	|SCE08GU13A1F1C-26	|XI Ruoyao	|同上，看上去两条 dual rank 确实不行。Likewise, so it looks like we just can't use two dual rank modules.|
+
+如果你觉得你在用的内存也工作的比较完美，请把它加进这张表。
+
+If you believe your module is stable on the board please add it to the list.
+
+== 简单的内存稳定性测试程序 (A simple memory stability test program) ==
+
+源代码：{{ :device:mem_test.c.gz |}}
+
+编译后，以 root 用户身份运行，将需要测试的内存空间大小 (单位为 GB) 作为命令行参数即可。例如，``gzip -d mem_test.c.gz; gcc mem_test.c -o mem_test; ./mem_test 5;`` 测试 5 GB 内存。
+
+如果输入的数字超过可用内存大小，程序会被内核 OOM kill 掉，这是正常现象。而死机、内核 panic 或 oops 属于不正常现象，表明内存兼容性 (或内存本身) 有问题。
+
+建议从 1 GB 开始，逐渐增大测试范围，直到出现 OOM kill。
+
+==== 更新固件 ====
+=== 使用 U 盘更新固件 ===
+  * 将需更新的固件文件拷入 U 盘（固件后缀必须以“fd”结尾），并将 U
+盘插入主板的 USB 接口；
+  * 主板通电开机，按“Del”键进入固件图形界面；
+{{:device:11.png?600|}}
+  -依次选择“保存&退出”->“更新固件”
+{{:device:12.png?600|}}
+  * 进入 U 盘目录，选择对应 BIOS 文件
+{{:device:13.png?600|}}
+{{:device:14.png?600|}}
+  * 按回车，进行更新，更新完成后会自动重启
+{{:device:15.png?600|}}
+{{:device:16.png?600|}}
+  *  重启进固件界面，确认版本是否被更新
+{{:device:17.png?600|}}
+
+====CPU超频====
+===非官方超频内核===
+FlyGoat Beta 版 vmlinuz 内核及其 patch：
+<WRAP center round download 60%>
+{{ :device:ls3a4000-oc-beta.zip |}}
+</WRAP>
+
+4.19 和 5.4 内核及其超频 patch ：
+<WRAP center round download 60%>
+4.19：{{ :device:kernel-4.19.zip }}|{{ :device:patch-4.19.zip }}\\
+5.4：{{ :device:kernel-5.4.zip }}|{{ :device:patch-5.4.zip }}
+</WRAP>
+

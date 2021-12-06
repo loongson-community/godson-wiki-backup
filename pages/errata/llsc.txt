@@ -1,0 +1,33 @@
+====== Errata:llsc ======
+
+部分龙芯多核处理器对 LL 指令的使用有严格的要求，如果使用时没有符合要
+求，就有可能导致出现对应数据出错的情况。目前内核及 C 库中的 LL 指令已经
+按照处理器要求正确使用，但是可能部分用户程序中并没有对 LL 进行特别处理，
+需要用户手工汇编对 LL 指令进行处理，或使用龙芯带有 `-mfix-loongson3a-llsc` 补丁的工具链。
+
+===== 细节 =====
+
+==== MIPS ====
+
+llsc指令的使用要求：
+  - LL 指令前必须使用 SYNC 指令
+  - LL 指令后 SC 指令前如果有跳转指令的，跳转目标必须是一条 SYNC 指令
+
+==== LoongArch ====
+
+在使用 `ll.w`/`sc.w` 和 `ll.d`/`sc.d` 指令构成的循环后，
+必须加 dbar 指令。
+
+对于当前 (20210829) 公布的工具链，GCC 支持
+`-mfix-loongson3-llsc` 选项，配置时可以用
+`--with-fix-loongson3-llsc` 设为默认。该选项只影响
+`__atomic_compare_exchange` 等内建原子操作原语，如果手写汇编
+(无论是 .S 文件或者写 asm statement) 都需要自己加 dbar。
+
+ref: https://github.com/loongson/gcc/blob/a34cdc5/gcc/config/loongarch/sync.md#L133
+===== 重现方法 =====
+
+构建 GCC，运行 libgomp 测试 (`make check-target-libgomp -j4`)
+即可重现。如果出现一大堆段错误，并且内核日志提示进程试图访问
+`0x0000000000000049` 或者 `0x0000000000000005` 这两个非常奇怪
+(没对齐) 的地址，那么恭喜你被坑了。

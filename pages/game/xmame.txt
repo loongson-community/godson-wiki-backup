@@ -1,0 +1,75 @@
+====== Xmame街机模拟器编译安装 ======
+====== 游戏ROM下载 ======
+<WRAP center round download 60%>
+[[http://www.kuaihou.com/s/jiejiroms/]]
+</WRAP>
+
+====== 编译安装步骤 ======
+==== 1、下载Xmame源码 ====
+下载地址：[[https://github.com/RobinDX/xmame]]
+
+在终端中输入：
+<code>
+$git clone https://github.com/RobinDX/xmame.git
+
+$cd xmame
+</code>
+
+==== 2、修改makefile ====
+579行：''MY_CPU = i386'' 改为 ''MY_CPU = risc_lsb'' (最低位有效的精简指令集cpu)
+
+==== 3、安装编译需要的库 ====
+编译中必须的库有 expat、libxv（如缺少其他库，请根据编译错误提示信息自行搜索包名安装）。
+
+debian系统下：
+
+<code>
+$sudo apt-get install libexpat-dev libxv-dev
+</code>
+
+==== 4、编译 ====
+<code>
+$make
+$make install
+</code>
+
+==== 5、运行游戏 ====
+在用户根目录创建 ''roms'' 目录，将下载好的 rom 放到 ''roms'' 目录里
+<code>
+$cd ~
+$mkdir roms
+</code>
+
+复制 rom 到 ''roms'' 目录里
+
+在用户根目录打开终端，启动模拟器
+
+例：启动三国志(rom 名 wof.zip)：
+<code>
+$xmame.x11 roms/wof.zip -s 2 -ef 1
+#-s 表示放大倍数为2，你也可以使用-fullscreen 全屏代替
+#-ef 1就是滤镜了，可以使用xmame.SDL --help查看 ef项支持的滤镜
+</code>
+
+如果玩 neogeo 的游戏（合金弹头、拳皇）需要下载 neogeo 的 bios，解压到 ''neogeo'' 目录，把 ''neogeo'' 目录放到 ''roms'' 下面即可。
+
+neogeo 的 rom 下载：
+<WRAP center round download 60%>
+https://pan.baidu.com/s/13O_gOccbUhrNjd2QlpXr-w 提取码: 7pgb
+</WRAP> 
+
+==== 6、键盘操作 ====
+第一次运行游戏，按K
+
+9：投币
+
+1、2、3：对应1P，2P，3P
+
+1P操作：方向键，左ctrl,左Alt
+
+F1到F10：功能键
+
+F6：调节画面帧数
+
+====== 参考 ======
+龙芯2F平台街机游戏模拟器安装：[[http://blog.chinaunix.net/uid-25298908-id-170484.html]]

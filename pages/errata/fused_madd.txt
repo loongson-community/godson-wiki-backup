@@ -1,0 +1,8 @@
+====== Errata:fused_madd ======
+龙芯处理器中，madd族指令的实现与MIPSr2所定义的unfused-madd并不一样。而是与MIPSr6类似的fused-madd。导致部分情况下对为MIPS编译的通用二进制存在兼容性问题。
+
+严格意义上来说，这不是一个Errata，是定义上的区别。
+
+这个问题在内核侧与编译器测都有解决。在内核侧，当fused数学exception发生时会模拟unfused的反应。编译器侧则针对龙芯启用了-mfused-madd Flag以生成适配fused-madd的二进制。
+
+

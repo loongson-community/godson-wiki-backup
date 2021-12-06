@@ -1,0 +1,50 @@
+====== Local I/O Interrupt Controller ======
+This controller can be found in the Loongson-3A and Loongson-2K family of processors as the package interrupt source transforming interrupts from on-chip devices to the CPU core's interrupt line. A controller can manage 32 downstream interrupts, and connect to 4 interrupt pins of 4 cores as upstream.
+
+===== Variants =====
+There are three known variants of the controller.
+
+|Version|Chips|Notes|
+|1.0|3A1000 ~ 3A3000|Initial Design|
+|1.0a|3A4000|Bug Fix + CSR ISR|
+|2.0|2K1000|Auto Bounce|
+
+===== Registers =====
+==== Main Registers ====
+Most registers are bit hot, which means a bit controls an interrupt.
+
+|Name|Offset|Size|Attribute|Aviliability|Description|
+|INT_ROUTE|0x0|0x20|R/W|All|Route config per interrupt, a byte for a interrupt|
+|ISR|0x20|0x4|RO|All|Interrupt status (1 for pending)|
+|IEN|0x24|0x4|RO|All|Interrupt enabled (1 for enabled)|
+|IEN_SET|0x28|0x4|WO|All|Enable interrupt (write 1 for set)|
+|IEN_CLR|0x2c|0x4|WO|All|Clear and Disable interrupt (write 1 for clear)|
+|INT_POL|0x30|0x4|R/W|All?|Interrupt trigger polarity (1 for high, 0 for low)|
+|INT_EDGE|0x34|0x4|R/W|All?|Interrupt trigger type (1 for edge, 0 for level)|
+|INT_BOUNCE|0x38|0x4|R/W|2.0|Interrupt Bounce Config|
+|INT_AUTO|0x3c|0x4|R/W|2.0|Interrupt Auto Config|
+==== per-core ISRs ====
+ISR for every core appears to be different on different chips. For 3A4000 there is even a CSR register to read local ISR. Please check the chip's page.
+
+===== Functions =====
+==== Route ====
+Every downstream interrupt can be routed to a core's interrupt line via INT_ROUTE register. For a single downstream interrupt, it's one-byte route config register contains two parts, target core, and target pin.
+
+|bit|7:4|0:3|
+| |Pin (Each bit for a pin)|Core (Each bit for a core)|
+
+Pin 0~3 means IP2~5 of MIPS core.
+
+Note that only one pin in one core as the target is allowed for a downstream interrupt.
+
+==== Auto Bounce ====
+W.I.P.
+
+===== Errata =====
+==== LPC Suprious ====
+Interrupts triggered by LPC (INT 10) sometimes missing in the ISR register. If the upstream core receives an interrupt but failed to read anything from ISR than it should come from LPC.
+
+It has been fixed in version 1.0a.
+
+==== Junk ISR ====
+In version 2.0, ISR sometimes contains junk. Please read per-core ISR instead of the main ISR.

@@ -1,0 +1,59 @@
+====== WPS 龙芯版 ======
+=====下载 WPS =====
+WPS 官网 WPS For Linux 2019 下载页面地址：
+<WRAP center round download 60%>
+[[https://www.wps.cn/product/wpslinux|https://www.wps.cn/product/wpslinux]]
+</WRAP>
+
+点击 立即下载 按钮，选择64位 Rpm 格式的 For MIPS 下载按钮（如果是 Debian 系系统用户则选择64位 Deb 格式的 For MIPS 下载按钮）。
+
+=====安装 WPS =====
+下载完成后在安装包所在文件夹（或路径）内输入命令进行安装。
+
+以 WPS-11.1.0.9080 版本为例，龙梦 Fedora28 安装命令：
+<code>
+$sudo dnf localinstall wps-office-11.1.0.9080-1.mips64el.rpm
+</code>
+
+龙芯中科 Loongnix 安装命令：
+<code>
+$sudo yum localinstall wps-office-11.1.0.9080-1.mips64el.rpm
+</code>
+<WRAP center round tip 60%>
+>注：龙芯中科 Loongnix 的方法是通用的，此方法亦可在龙梦 Fedora28 上使用。
+</WRAP>
+
+=====安装 WPS 必要的字体包=====
+一些字体 Linux 并不会自带，但如果不安装 WPS 则会报错，故有些字体需额外安装。
+2013年从WPS官方网站下载得到的字体包（安装后即无报错）：
+<WRAP center round download 60%>
+{{ :common_software:wps_symbol_fonts.zip |}}
+</WRAP>
+
+<del>其他常用中文字体打包（仅个人使用）</del>（链接已失效）：
+<WRAP center round download 60%>
+[[https://share.weiyun.com/5OE7vm2]]
+</WRAP>
+
+ 附：测试文档
+<WRAP center round download 60%>
+
+{{ :device:通告扫黑除恶.doc |}} （公文） 
+
+{{ :device:组合数学_修改_.doc |}} （数学公式）
+
+
+</WRAP>
+
+=====龙芯2F WPS=====
+
+适用于龙芯2F，在 Debain6-8 均可以使用，并且自带了很多字体。
+
+安装命令：
+
+  # apt install ./wps-8.1.0.2962.ND6.mipsel
+  # apt update -f
+
+<WRAP center round download 60%>
+[[https://share.weiyun.com/J8hsAya0]]
+</WRAP>

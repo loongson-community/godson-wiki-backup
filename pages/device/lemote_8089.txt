@@ -1,0 +1,61 @@
+====== Lemote 8089 ======
+Lemote 8089，是龙梦逸珑系列笔记本的英文名称。
+
+逸珑系列笔记本一共有6种型号，分别是：**//8089A//**、**//8089B//**、**//8089C//**、**//8089D//**、**//8007//**、**//8101//**。
+
+===== 安装系统 =====
+==== 目前可用系统 ====
+>目前 8089 系列笔记本可用的系统有：[[os:debian|Debian8]]、[[os:aosc_retro|AOSC Retro]]、[[os:gentoo|Gentoo]]、[[os:clfs|Linux From Scratch]]
+
+=== Debian8 ===
+软件包较多，系统稳定成熟。
+
+下载链接：
+
+安装请见主条目：[[guide:debian_installation|Debian 系发行版安装指南]]。
+
+=== AOSC Reto ===
+基于 N64 Port，高性能，拥有良好体验。
+
+下载链接：
+
+安装请见主条目：[[guide:aosc_installation|AOSC 系发行版安装指南]]。
+
+=== Gentoo ===
+自定义化程度高，适合喜爱折腾的用户。
+
+安装请见主条目：[[guide:gentoo_installation|Gentoo 安装指南]]
+
+=== Linux From Scratch ===
+从头到尾自己编译整个 Linux，自定义化程度最高。
+
+安装请见主条目：  [[https://www.linuxfromscratch.org/~xry111/lfs-mips64el/|Linux From Scratch MIPS64 EL Port (experimental)]]
+===== 固件更新 =====
+8089 系笔记本更新 BIOS 固件 (Pmon) 前，必须要把 EC 固件更新为最新稳定版本。
+
+==== EC 固件更新 ====
+下载地址：
+<WRAP center round download 60%>
+[[http://dev.lemote.com:8000/files/binary/ec/pq1d28.bin|固件本体]] | 
+[[http://dev.lemote.com:8000/files/binary/ec/pq1d28.bin.md5|MD5 校验码]]
+</WRAP>
+<WRAP center round alert 60%>
+<wrap hi><wrap em>//警告：EC 烧写失败，会导致无法正常开机，请谨慎！//</wrap></wrap>
+</WRAP>
+
+烧写方法：
+  - 下载 EC 固件到本地硬盘 /boot 分区中。
+  - 接上笔记本的 AC 电源，重启或开机。
+  - 开机时，按键盘上的 [DEL] 键进入 PMON 命令接口。
+  - 输入命令 ''load -r -d /dev/fs/ext2@wd0/pq1d28.bin'' 开始烧写。
+  - 完成后 EC 固件程序会自动关闭计算机，按电源键开机。
+
+==== Pmon 固件更新 ====
+下载地址：
+<WRAP center round download 60%>
+[[http://dev.lemote.com:8000/files/binary/pmon/pmon-LM8089-1.4.9a.bin|固件本体]] | [[http://dev.lemote.com:8000/files/binary/pmon/pmon-LM8089-1.4.9a.bin.md5|MD5 校验码]]
+</WRAP>
+
+
+===== 画廊 =====
+{{:device:8089b_8089d.jpg?200|逸珑8089B和8089D}}{{:device:8089c_8089a.jpg?200|逸珑8089C和8089A}}{{:device:8007_8089c.jpg?200|逸珑8007和8089C}}{{:device:8007.jpg?200|逸珑8007}}{{:device:8101_ad.jpg?200|逸珑8101的A/D面}}{{:device:8101_bc.jpg?200|逸珑8101的B/C面}}

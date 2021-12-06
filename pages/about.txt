@@ -1,0 +1,38 @@
+====== 关于 (About) ======
+本网站由一群龙芯爱好者组建，其初衷是为龙芯爱好者们提供一个分享信息的平台。
+
+This site was established by Loongson user group. Mainly for information sharing purposes.
+
+====== 联系 (Contact) ======
+我们一般通过以下渠道交流:
+
+Usually, we communicate via methods below:
+
+  * QQ群 Loongson Enhancement
+  * IRC FreeNode #loongson (English Only)
+  * Telegram [[http://t.me/loongson_users|@loongson_users]]
+
+===== 基础设施 (Infrasturctures) =====
+本网站提供一系列基础设施，目前基础设施由[[user:flygoat|Jiaxun Yang]]维护，如果遇到任何问题，你可以直接联系他。
+
+We are providing various kinds of services, they're currently maintained by Jiaxun Yang, please contact him if you have any questions.
+
+==== Wiki ====
+=== wiki.godson.ac.cn ===
+使用Dokuwiki搭建，主要用于分享信息，任何注册用户都可以编辑。
+
+Built with DokuWiki, all registered users can edit.
+
+==== FTP ====
+=== ftp.godson.ac.cn ===
+用于存储部分软件及文档，任何人都可以下载，但上传服务仅向授权用户开放，如果有需要申请帐号请联系维护者[[user:flygoat|Jiaxun Yang]]。
+
+请注意服务器资源有限，请尽量不要上传有固定外部链接(例如来自GitHub)的资源。
+
+也请不要上传可能涉及版权风险的文件。
+
+For sharing files, everyone can download but only trusted users can upload. Please contact the maintainer [[user:flygoat]] if you want to be a trusted user.
+
+To save server resources, please don't upload files with fixed external links (e.g. Files from GitHub).
+
+Also don't upload files with copyright issues.

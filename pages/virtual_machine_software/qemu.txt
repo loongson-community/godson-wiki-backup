@@ -1,0 +1,130 @@
+======QEMU=======
+QEMU 是 Linux 平台上常用的虚拟机软件，本页面介绍 QEMU 的安装和使用方法。
+===== 编译安装 =====
+==== 官网下载安装 ====
+在[[https://www.qemu.org/|QEMU官网]]上的 Last Release 栏目下载最新版本。
+
+对下载下来的压缩包进行解压，解压后进入 ~/qemu-x.x.x 源码包路径，打开终端，输入以下命令来检验安装环境：
+<code>
+$./configure
+</code>
+<WRAP center round info 60%>
+>注：此命令是默认编译所有架构的，如只需编译 x86_64 架构的可以输入：
+<code>$./configure --target-list=x86_64-softmmu
+</code>
+>编译arm架构的可以输入：
+<code>$./configure --target-list=arm-softmmu
+</code>
+</WRAP>
+在 [[os:fedora28|Lemote Fedora28]]、[[os:fedora21|Loongnix]] 上，可以通过以下命令安装 glibc-2.4.0、gthread-2.0、SDL-2.0：
+<code>
+#yum install gtk2-devel SDL2-devel
+</code>
+在 configure 命令中选择好所需编译的架构后并确定无软件缺失并确定 SDL support 为 yes 后，输入以下命令进行编译：
+<code>
+$make -j4
+</code>
+再输入以下命令进行安装：
+<code>
+#make install
+</code>
+如在过程中无因出错而中断即是安装成功。
+
+==== 龙梦 Feodra28 安装 ====
+龙梦源里自带 QEMU 所有架构的包和所需的包和库，直接在终端中输入如下命令即可安装使用：
+<code>
+#yum install qemu
+</code>
+但现阶段（截止2020年2月25日）龙梦源里的 QEMU 的 x86 架构不能正常使用，故建议在官网上下载源码包进行编译安装。
+
+==== 龙芯 Loongnix 安装 ====
+===== 虚拟机设置 =====
+==== 系统安装 ====
+<WRAP center round help 60%>
+>注：目前（截止2020年3月7日）而言 mips 架构机器上的 QEMU 是不能模拟其他架构的 SMP 系统（也就是模拟多核多线程）的，故在命令行设置时无需开启 SMP 功能。
+</WRAP>
+
+=== 创建虚拟机映像 ===
+首先在一个目录下创建虚拟机虚拟存储映像文件。创建命令例子如下：
+<code>
+qemu-img create -f qcow2 windowsxp.qcow2 15G
+</code>
+其中，''windowsxp.qcow2''是所要创建的映像文件名，''15G''是指定映像文件的最大大小。
+<WRAP center round tip 60%>
+>注：建议在''/home/用户名''路径下创建映像文件，可在以后使用时无需用管理员权限即可操作虚拟机。
+</WRAP>
+下载完所需安装的系统的镜像后，把其放入虚拟机映像文件的同一目录下。
+
+=== 引导 ISO 镜像进行安装 ===
+使用命令从 ISO 镜像引导开始安装系统。具体例子如下：
+<code>
+qemu-system-x86_64 -m 2048 -boot d windowsxp.qcow2 -cdrom zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-74070.iso
+</code>
+其中，''-m 2048''是指定虚拟机有2048MiB 大小的内存，''-boot d''是指定虚拟机引导光驱（即ISO镜像），''windowsxp.qcow2''是指定虚拟机虚拟存储映像（即虚拟磁盘），''-cdrom zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-74070.iso''是指定虚拟机的光驱加载 Windows xp ISO 镜像。
+<WRAP center round info 60%>
+>注：安装 Windows 系统可见下文 Windows 系统安装提示来获得进一步帮助。
+</WRAP>
+
+==== 设置网络 ====
+QEMU 允许通过命令行设置网络。最简单的设置网络具体例子如下：
+<code>
+-nic user
+</code>
+该命令默认设置一个 Intel e1000 网卡使虚拟机连接网络（不能和宿主机进行连接，只能访问外网）。
+以下列出一些系统的推荐设置:
+=== Linux ===
+使用系统默认设置(如''-nic user'')或：
+<code>
+-netdev user,id=n0 -device rtl8139,netdev=n0
+</code>
+
+=== Windows NT4.0/95/98 ===
+<code>
+-netdev user,id=mynet0 -device pcnet,netdev=mynet0
+</code>
+
+=== Windows 2000/XP/Vista/7/8/8.1/10 ===
+<code>
+-netdev user,id=n0 -device rtl8139,netdev=n0
+</code>
+<WRAP center round tip 60%>
+>注：其他系统的命令设置请到 [[https://wiki.qemu.org/Documentation/Networking|QEMU Wiki]] 上查询。
+</WRAP>
+
+==== Windows 系统安装提示 ====
+在安装 windows 类系统（及其软件）时注意最好下载带 vl 或 vol 的版本，这样可以在网上查询相应软件的 vl 密钥或无需输入密钥直接使用。
+<WRAP center round info 60%>
+>1、VOL（简称卷 UME授权的组织，又名：VL），用“VOL”字样标识任何Windows操作系统安装CD / DVD或图像文件，
+>表示这是授权的Windows副本之一。而最重要的一点是——根据VOL计划的规定，VOL许可的产品根本不需要激活。
+
+>2、VLK 的全称是 Volume Licensing Key ，是指 VOL 版本在部署(deploy)中所需要KEY，而且只用于 VOL 版中。
+>它仅适用于VOL版本，并具有唯一的效果 – 证明产品是合法的，在VOL下授权。
+
+>3、根据许可协议，XP零售版的产品密钥只能在一台PC上使用，但VOL版的产品密钥可供更多的PC使用。
+
+>4、XP的零售版需要激活，但VOLs完全没有这个概念。
+
+>5、XP的VOL版没有Home Edition，其功能与Professional Edition完全一样。
+</WRAP>
+<WRAP center round help 60%>
+>在此不建议用 vol 版本的 office 软件，在安装后可能会一直提示“此软件副本可能是盗版”。
+</WRAP>
+
+<WRAP center round important 60%>
+>注：本页面所提供的 windows 系统下载地址皆为 ed2k 下载链接，建议在 x86 的设备上用迅雷等软件下载再用 U盘复制到龙芯机器上。
+</WRAP>
+
+
+=== Windows2000 ===
+Windows2000下载：
+<WRAP center round download 60%>
+[[ed2k://|file|ZRMPSEL_CN.iso|402690048|00D1BDA0F057EDB8DA0B29CF5E188788|/]]
+</WRAP>
+<WRAP center round tip 60%>
+>注：Windows2000可以免密钥使用。
+</WRAP>
+=== windows xp ===
+Windows XP Professional with Service Pack 3 CD VL 32位下载：
+<WRAP center round download 60%>
+[[ed2k://|file|zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-74070.iso|630237184|EC51916C9D9B8B931195EE0D6EE9B40E|/]]
+</WRAP>

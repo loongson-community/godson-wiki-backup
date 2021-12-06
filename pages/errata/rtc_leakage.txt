@@ -1,0 +1,3 @@
+====== Errata:RTC_Leakage ======
+由于RTC电源域漏电导致的Standby电流过高普遍存在于龙芯的SoC以及MCU中。
+对于存在此问题的芯片建议使用外置电源管理与RTC。

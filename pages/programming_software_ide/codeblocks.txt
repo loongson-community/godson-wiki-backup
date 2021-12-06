@@ -1,0 +1,81 @@
+======Code::Blocks======
+
+=====从软件源中安装=====
+
+====本体====
+
+Debian系参考命令
+
+  sudo apt-get install codeblocks
+
+RadHat系参考命令
+
+  sudo dnf install codeblocks
+
+====插件====
+
+Debian系参考命令
+
+  sudo apt-get install codeblocks-contrib
+
+RadHat系参考命令
+
+  sudo dnf install codeblocks-contrib
+
+=====从源码构建=====
+
+====20.03====
+
+以Fedora28为例
+
+===获取源码包===
+
+从[[https://sourceforge.net/projects/codeblocks/files/Sources/20.03/|sourceforge]]下载20.03版源码，有 tar.xz 和 tar.bz2 两种格式，这里以 codeblocks-20.03.tar.bz2 为例。
+
+===安装依赖软件包===
+
+CodeBlocks源码包中提供了适合Fedora的spec打包脚本（在源码的根目录下），我们可以直接使用它进行打包。用下面的命令安装打包工具和工具链：
+
+  sudo dnf install rpm-build gcc gcc-c++
+
+用下面的命令安装编译CodeBlocks所依赖的软件包：
+
+  sudo dnf install astyle-devel boost-devel bzip2-devel gamin-devel hunspell-devel libICE-devel libtool squirrel-devel tinyxml-devel wxGTK-devel zlib-devel
+
+===修改源码===
+
+  * 解包
+
+  tar -jxvf codeblocks-20.03.tar.bz2
+
+  * src/plugins/contrib/dragscroll/dragscrollcfg.h
+
+line 38 修改为：
+
+<code c>
+virtual void InitDialog(){ asm("break");}
+</code>
+
+  * src/src/Makefile.am
+
+line37 修改为：
+
+  codeblocks_LDADD =  ../sdk/libcodeblocks.la \
+  			$(WX_LIBS) \
+  			$(WX_GTK_LIBS) -lgobject-2.0
+
+  * 重新打包
+
+  tar -jcvf codeblocks-20.03.tar.bz2 codeblocks-20.03
+
+===编译打包===
+
+将 codeblocks-20.03.tar.bz2 放置在打包目录中的 SOURCES 目录，将 codeblocks.spec.fedora 放置在 SPECS 目录下，运行自动打包命令：
+
+  rpmbuild -ba codeblocks.spec.fedora
+
+如果只需要二进制软件包：
+
+  rpmbuild -bb codeblocks.spec.fedora
+
+获得的 rpm 包在 RPMS/mips64el 目录下， src.rpm 包在 SRPMS 目录下。软件本体需要安装 codeblocks 和 codeblocks-libs，插件需要安装 codeblocks-contrib 和 codeblocks-contrib-libs 。

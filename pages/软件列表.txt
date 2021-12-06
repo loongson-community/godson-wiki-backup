@@ -1,0 +1,32 @@
+====== 软件列表 ======
+===== BIOS&Bootloader =====
+  * [[pmon]]
+  * [[kunlun|昆仑固件]]
+===== 操作系统 =====
+  * [[os:fedora28|Fedora28]]
+  * [[os:fedora21|Fedora21]]
+  * [[os:Loongnix|Loongnix]]
+  * [[os:aosc|AOSC OS]]
+  * [[os:aosc_retro|AOSC Retro]]
+  * [[os:loongbian|Loongbian]]
+=====编译器=====
+  *[[compiler:gcc|GCC编译器]]
+  *[[compiler:llvm|LLVM编译器]]
+  *[[compiler:clang|CLANG编译器]]
+=====编程软件/集成开发环境=====
+  *[[programming_software_ide:eclipse|Eclipse IDE]]
+  *[[programming_software_ide:qt_creator|Qt Creator]]
+  *[[programming_software_ide:codeblocks|Code::Blocks IDE]]
+  *[[programming_software_ide:vscode|Visual Studio Code]]
+  *[[programming_software_ide:intellij_idea|IntelLiJ IDEA]]
+  *[[programming_software_ide:clion|CLion]]
+  *[[programming_software_ide:goland|GoLand]]
+=====虚拟机软件=====
+  *[[virtual_machine_software:qemu|QEMU]]
+=====网页浏览器=====
+  *[[common_software:firefox|Firefox浏览器]]
+  *[[common_software:chromium|Chromium浏览器]]
+=====办公软件=====
+  *[[common_software:wps|WPS龙芯版]]
+=====单机游戏=====
+  *[[game:minecraft|Minecraft]]

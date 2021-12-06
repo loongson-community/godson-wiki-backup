@@ -1,0 +1,156 @@
+====== Debian 系发行版安装指南 ======
+安装在龙芯 3A3000 及更早的机子可以参考刘世伟先生的文章：[[https://www.bjlx.org.cn/node/895]]
+
+===== 用 Debootstrap 安装 =====
+本标题改自于[[https://www.cnblogs.com/weilinfox/|八衛門狸]]的文章《[[https://www.cnblogs.com/weilinfox/p/12468458.html|龙芯 3A4000 安装 Debian10 （via debootstrap）]]》。
+
+<WRAP center round info 60%>
+本方法在龙芯全平台上通用
+</WRAP>
+
+==== 思路 ====
+Debian Wiki：[[https://wiki.debian.org/zh_CN/Debootstrap]]
+
+debootstrap 可以建立一个基本的 Debian 文件系统，但是不包括内核等同样必要的组分。所以我们使用龙梦 [[os:fedora28|Fedora28]] 的内核，并将 Debootstrap 获取的文件系统放在 Fedora28 的内核之上。
+
+首先在硬盘上安装 Fedora28 ；然后重新从 LiveCD 启动，将已经安装的 Fedora28 除了内核和引导外的文件全部删除；最后用 debootstrap 获取 Debian10 的基本系统，简单配置即可。
+
+<WRAP center round important 60%>
+本标题默认你有一定的 Linux 基础。文中的很多操作//**<wrap hi><wrap em>非常危险</wrap></wrap>**//，操作过程中请保持清醒，知道自己在干什么。操作前也建议先演练，2020年6月后 3A4000 有虚拟机可用。
+</WRAP>
+
+
+==== 准备 ====
+  - 龙芯 Fedora28 LiveCD
+  - 预备安装系统的龙芯电脑
+
+==== 开始 ====
+  - 首先确认即将用于安装新系统的硬盘已经没有未备份的重要数据，然后引导至 LiveCD 并安装。如果硬盘中已经安装有 Fedora28 可以跳过。
+  - ''passwd root'' 设置 LiveCD 的 root 密码。
+  - 挂载硬盘中 Fedora28 的根目录 ''sudo mount /dev/fedora_sunhaiyong/root /mnt'' 如果根目录路径不同的按实际情况修改。如果出现 "unknown filesystem type 'LVM2_member'" 可以先 ''lvdisplay''  查看卷名，如果 LV Status 显示 unenable 则 ''vgchange -ay <LV mame>''  再挂载。
+  - ''cd /mnt''  到 Fedora28 根目录后 ''sudo rm -rf *'' 删除原有的根目录内容（这里默认 ''/boot'' 目录是**<wrap hi>单独一个分区</wrap>**，如果**<wrap hi>不是</wrap>**，则**<wrap hi>不要</wrap>**//<wrap em>删除</wrap>// ''/boot'' 目录。这里也默认系统里**<wrap hi>没有重要文件</wrap>**，如果有，请//<wrap em>停止安装</wrap>//，**<wrap hi>备份</wrap>**！所有自己不小心造成的任何后果都得自己承担！非常危险，小心小心再小心）。
+  - ''sudo dnf install debootstrap -y'' 安装 debootstrap，''sudo debootstrap ––arch mips64el buster /mnt https://opentuna.cn/debian/'' 创建 Debian 文件系统，源可以按需更改。
+  - 文件系统创建成功后 ''cp -r /lib/modules /mnt/lib/'' 从 LiveCD 中复制内核模块。
+  - 根据实际情况修改 /mnt/etc/fstab ，示例：''vi /mnt/etc/fstab'' 键入 ''/dev/sda3 / xfs defaults 1 1'' 保存退出。
+  - 现在我们已经建立好 Debian 的根目录，可以使用了。
+  - ''chroot /mnt'' 切换到新的 Debian 环境。
+  - ''passwd root'' 修改 Debian 的 root 密码。
+  - 重启用 root 登陆即可得到可用的 Debian 终端。
+  - ''dhclient'' 联网。
+  - 新建一个管理员账户 ''useradd -m <username>'' ''passwd <username>'' ， ''visudo'' 仿照 root 行加上新用户。
+
+==== 桌面环境 ====
+用 root 登陆终端后 ''vi /etc/asound.conf'' ，键入下面三行，否则安装桌面环境后会没有声音。
+
+<code>
+defaults.pcm.card 1
+defaults.pcm.device 0
+defaults.ctl.card 1
+</code>
+
+安装Kde： ''apt-get install task-kde-desktop xorg''
+
+安装Mate： ''apt-get install task-mate-desktop xorg''
+
+安装完成后 ''startx'' 即可进入桌面，可以在设置中添加新的管理员用户，或重启登陆。
+
+==== 后续设置和 FAQ ====
+=== "unable to resolve host" 错误 ===
+
+sudo 显示 ''sudo: unable to resolve host localhost.localdomain: Name or service not known'' 
+
+hostname 默认为 localhost，所以可以在 /etc/hosts 文件中添加一行 ''127.0.1.1 localhost.localdomain localhost'' ，保存后立即生效。
+
+也可以自定义 hostname：''vi /etc/hostname'' （默认没有这个文件）键入自定义的 hostname ，然后在 ''/etc/hosts'' 文件中添加一行 ''127.0.1.1 <myhostname>.localdomain <myhostname>'' ，重启后生效，自定义的 hostname 可以在终端的 ''<username>@'' 后看到。
+
+再 sudo 时就不会报错了。
+
+=== 无线网卡 ===
+
+Debian Wiki：[[https://wiki.debian.org/WiFi]]
+
+Arch Wiki：[[https://wiki.archlinux.org/index.php/WPA_supplicant_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)|https://wiki.archlinux.org/index.php/WPA_supplicant_(简体中文)]]
+
+<code>
+sudo apt-get install firmware-linux firmware-linux-nonfree wireless-tools net-tools firmware-ralink firmware-realtek firmware-iwlwifi
+</code>
+
+更多驱动可以通过 ''sudo apt-cache search firmware-*''  搜索。
+
+似乎无法通过 KDE 连接，但是可以通过 wpa_supplicant 连接：''sudo su -c 'wpa_supplicant -B -i interface -c <(wpa_passphrase MYSSID passphrase)''' 
+
+连接成功后 ''dhclient'' 获取 IP。
+
+=== 修改源 ===
+
+安装完 sources.list 只有一行，可以扩充，可用的源有 tuna 、 opentuna 、 ustc 、 163、 华为云。
+
+示例（注释掉的那行是默认的）：
+
+<code>
+#deb http://ftp.cn.debian.org/debian buster main
+
+deb https://mirrors.ustc.edu.cn/debian/ buster main contrib non-free
+deb-src https://mirrors.ustc.edu.cn/debian/ buster main contrib non-free
+
+deb https://mirrors.ustc.edu.cn/debian/ buster-updates main contrib non-free
+deb-src https://mirrors.ustc.edu.cn/debian/ buster-updates main contrib non-free
+
+deb https://mirrors.ustc.edu.cn/debian/ buster-backports main contrib non-free
+deb-src https://mirrors.ustc.edu.cn/debian/ buster-backports main contrib non-free
+
+deb https://mirrors.ustc.edu.cn/debian-security/ buster/updates main contrib non-free
+deb-src https://mirrors.ustc.edu.cn/debian-security/ buster/updates main contrib non-free
+</code>
+
+保存后 ''update'' 。
+
+=== 中文语言 ===
+
+安装 locale 和 firefox 、 libreoffice 语言包：
+
+<code>
+sudo apt-get install locale kde-l10n-zhcn firefox-esr-l10n-zh-cn libreoffice-l10n-zh-cn
+</code>
+
+locale 设置页面勾选 ''zh_CN'' 开头的全部和 ''en_US.UTF-8''  ，默认语言改为 ''zh_CN.UTF-8'' 。
+
+KDE的语言设置界面添加中文，时区设为上海，然后重启即可。
+
+=== 桌面弹窗 ===
+
+需要安装 libnotify-bin 来支持桌面悬浮弹窗，比如 KDE Connect 显示手机的通知。
+
+<code>
+sudo apt-get install libnotify-bin
+</code>
+
+=== SSH ===
+
+<code>
+sudo apt-get install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
+</code>
+
+=== 常用软件 ===
+
+QQ Linux：选 MIPS64 的 DEB 包 [[https://im.qq.com/linuxqq/index.html]]
+<WRAP center round info 60%>
+由于最初发布的版本没有 MIPS64 的 DEB 包，如果之前是用 .sh 安装的可以参照这里卸载：[[https://www.cnblogs.com/weilinfox/p/12619135.html]]
+</WRAP>
+
+WPS Office：选 MIPS 的 64位 Deb 格式 [[https://www.wps.cn/product/wpslinux]]
+
+龙芯中科版 Chromium60：安装 [[http://ftp.loongnix.org/browser/chrome/60/deepin/]] 下的四个包
+
+航天龙梦版 Chromium82 beta：[[http://okapps.oukan.online/lroapps/deb-loongson/chromium-browser-beta_82.0.4051.0-1_mips64el.deb]]
+
+网易云音乐： 大佬开发的命令行版，拉风又好用 [[https://github.com/darknessomi/musicbox]]
+
+Kdeconnect：''sudo apt-get install kdeconnect''
+
+===== 参考 =====
+  * 刘世伟的 Blog：[[https://www.bjlx.org.cn/node/895]]
+  * chipo 的 Blog：[[https://my.oschina.net/chipo/blog/3077050?from=groupmessage]]
+

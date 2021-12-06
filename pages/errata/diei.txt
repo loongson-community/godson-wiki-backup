@@ -1,0 +1,13 @@
+====== Errata:diei ======
+几乎所有实现了MIPS Release2的龙芯处理器中对于DI/EI 中断关闭/打开的指令实现均存在问题，但其问题存在两种变种。
+
+若在存在这些问题的处理器中希望打开关闭中断，可以直接操作CP0寄存器。
+
+===== 变种一 =====
+在3A1000，3B1500等早期龙芯处理器中，DI/EI属于绝对禁用的指令。使用会导致核直接卡住。
+
+===== 变种二 =====
+在3A2000，3A3000等龙芯处理器中，DI指令不会刷新 CP0 Status.IE寄存器,需要手动使用mfc0刷新。
+
+可以参考主线内核中[[https://elixir.bootlin.com/linux/v4.14/source/arch/mips/include/asm/irqflags.h|irqflags.h]]的实现。
+

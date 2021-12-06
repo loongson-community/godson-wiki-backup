@@ -1,0 +1,462 @@
+====== Lemote A1310 ======
+=====快速安装指南=====
+====第一步：释放静电====
+在干燥的天气中，静电是十分容易产生的。裸露的主板一般比较脆弱，容易被静电损坏。所以在触碰你的主板之前，建议脱下如**羊毛**、**化纤**等易起静电的材质的衣服，并通过**洗手**、**触摸铁水管**等方法释放静电。若有条件，建议使用防静电手环、防静电手套等防静电措施。
+====第二步：更换RTC电池====
+主板上有一颗电压为3V，型号为CR1220的电池，用于为主板上的RTC时钟供电。
+对于长时间库存的A1310，其RTC纽扣电池可能耗尽。鉴于固件和Grub依赖来自RTC的Clock Tick，RTC时钟的不正常会导致：\\
+
+  *进入昆仑固件时无法读取基本信息
+  *系统启动时卡在载入内核部分（屏幕显示“Loading kernel... Start initrd...”）
+  *GRUB界面不能读秒后自动进入系统
+建议在装机时一并换新。
+====第三步：连接主板接口====
+===机箱===
+A1310为mini-ITX型主板，尺寸为17cm*17cm*5cm（含风扇）。由于大部分流出的A1310不包含挡板，需要自行制作。（某宝有“万能挡板”可以选用）
+<WRAP center round help 60%>
+>注：由于机箱设计不尽相同，此处略过在机箱中安装主板的步骤。具体请参考机箱说明书。
+</WRAP>
+
+===电源===
+主板使用24针ATX电源接口，同时提供了4针的CPU供电接口。将电源接头连接到对应的接口。\\
+<WRAP center round important 60%>
+**//有用户反映使用20针电源无法正常启动主板，原因未明，建议使用24针电源。若不接4针CPU供电，主板也不能启动。//**
+</WRAP>
+\\
+龙芯(r)3B1500的功耗在30W到60W之间，经测试该主板最低只需100W的电源即可驱动。但实际使用建议使用更大功率的电源。
+<WRAP center round important 60%>
+>注：有用户反映使用较差的电源可能会导致主板不能启动。
+</WRAP>
+
+===机箱面板===
+主板上的9针接口为开机键、复位键、电源灯、硬盘灯的接口。其接线定义如下：
+|硬盘灯+|1|2|电源灯+|
+|硬盘灯-|3|4|电源灯-|
+|重启键|5|6|电源键|
+|重启键|7|8|电源键|
+|无连接|9| |（此处无插针）|
+{{:device:机箱面板接线.jpg?400|}}\\
+<WRAP center round important 60%>
+**注意！主板上的丝印与接口定义并不对应，请勿按照主板上的丝印接线！**
+</WRAP>
+
+===USB接口===
+经用户测试USB接口线序为通用标准
+<WRAP center round important 60%>
+>注：USB接线错误有损坏主板和USB设备的可能，接线时需要注意线序。
+</WRAP>
+
+===SATA接口===
+主板上有4个SATA2.0接口。\\
+<WRAP center round important 60%>
+>注：SATA接口比较脆弱，不建议频繁插拔。
+</WRAP>
+
+===面板音频接口===
+经用户测试面板音频接口线序为通用标准。
+
+===TCM接口===
+为可信密码模块(Trusted Cryptography Module)接口，用于提供硬件级的设备加密保护，一般不需要如此高规格的加密措施，忽略即可。
+
+===CMOS清除跳线===
+主板提供了一个3针的CMOS跳线，1、2脚短接时用于清除BIOS固件内容，平时使用请将2、3脚短接。
+<WRAP center round important 60%>
+>在清除BIOS数据之前，需要关闭电脑并断电，不然可能会引起故障。
+</WRAP>
+
+
+===RS232串口===
+主板提供了一个RS232串口。可通过RS232串口线接收主板固件启动信息，为维修提供参考。
+<WRAP center round important 60%>
+>注：主板的串口为232电平，与常见TTL电平不兼容，需要专用芯片转换（如MAX3232），常见的PL2303、ch340、ft232等USB转串口小板无法直接使用。（有烧毁小板的危险）
+</WRAP>
+
+====第四步：安装内存====
+主板上有两个内存插槽，使用标准的1.5V DDR3 DIMM内存条。但由于龙芯(r)3B1500的设置，内存将统一运行在1066MHz下。\\
+对于使用单条内存的情况，建议将内存条安装在靠近处理器的插槽中。否则主板可能会无法启动。
+<WRAP center round info 60%>
+>龙芯(r)3B1500集成了内存控制器，主板上的内存插槽直接与3B1500连接。因为3B1500使用了NUMA（Non-Uniform Memory Access）架构，每一个NODE节点（关核后只有3个核心）使用一个内存槽，两个内存插槽分别对应2组共8个核心（关核后只有6个核心）。在单条内存的情况下，由于没有连接内存的NODE节点（关核后3个核心）需要通过另外的核心访问内存，响应速度较慢，故主板整体运行速度会有所下降。
+</WRAP>
+<WRAP center round tip 60%>
+
+>注：经测试，AMD专用条可以点亮使用。
+
+>注：如出现经常死机的情况，可拔出内存条擦拭其金手指，再插回重启，直至能正常进入操作系统。
+
+</WRAP>
+
+====第五步：安装显卡====
+<WRAP center round info 60%>
+>注：本步为可选操作
+</WRAP>
+
+A1310采用的AMD(r)RS780E北桥中已经集成了一个Radeon(tm)HD3200，可以不安装独立显卡。但HD3200在龙芯下的驱动尚有问题，无法硬解视频。对于有视频播放需求的用户建议安装驱动相对完善的独立显卡。**但由于驱动和固件尚不完善，不是所有显卡都适用。**同时也应注意显卡功率，保证电源功率足够大。\\
+<WRAP center round tip 60%>
+>注1：由于nVidia(r)显卡的开源驱动相对于AMD(r)的而言效果并不好，故此处不推荐使用n卡。
+
+>注2：由于显卡驱动需要调试，因此能点亮不代表能完全发挥性能。
+
+>注3：由于驱动不完善，独立显卡可能无法加速系统界面的显示，故安装独显后系统界面可能会有卡顿\\
+
+</WRAP>
+
+===独立显卡安装步骤===
+  *第一步：先不安装独立显卡，开机进入BIOS（昆仑固件），在BIOS里设显卡为板载，保存，关机
+  *第二步：插上独立显卡，**但显示器仍然接在主板的接口上**，开机进入BIOS中设显卡为PCIE，保存，关机
+  *第三步：将显示器接到独立显卡，**拔掉USB键盘鼠标**，开机，直至屏幕有输出，接上USB键盘鼠标。
+
+<WRAP center round help 60%>
+>注：由于昆仑固件和GRUB的问题，部分Fedora28、Fedora21用户会卡在载入内核部分，若出现该情况，可能需要每次开机前先拔掉键鼠。
+>由于A1310主板上独立显卡在内核载入完成之前都是没有输出的状态（黑屏），无法得知是否卡住，为避免这类情况导致浪费时间，建议第一次安装显卡先拔掉USB键盘鼠标。
+>对于已经卡死的状态，此时需要拔掉USB键盘鼠标后重启电脑，直至出现登录界面再插上。也有用户反映更换鼠标即可解决。
+>如果固件是pmon则不需要上述步骤，直接在主板安装显卡就能用。
+</WRAP>
+
+  *若能正常启动，则显卡已经安装完成，若不能则可能显卡不兼容或其他原因，需要进一步排查。
+**当前可用的显卡型号：**
+^显卡型号^状态^
+|AMD(r) Radeon R7 350|可用|
+|AMD(r) Radeon R7 240|可用|
+|AMD(r) Radeon HD 7850|可用|
+|AMD(r) Radeon HD 6670|可用|
+|AMD(r) Radeon HD 5450|可用（固件升级后）|
+**当前不能用的显卡型号：**
+^显卡型号^状态^
+|AMD(r) Radeon R7 260x|无法亮机|
+====第六步：连接硬盘====
+使用SATA线连接主板和硬盘，并连接硬盘电源。
+
+====第七步：上电开机====
+检查所有线缆是否连接正确、稳固。然后便可接上电源开机，为安装系统做准备。
+若主板正常，将会进入昆仑固件的命令行界面，屏幕将输出：
+<code>
+Boot From MKSH
+Mini Kunlun Shell (MKSH) v1.0
+fs0:\startup.nsh is not a valid path.
+MKSH>_
+</code>
+=====系统安装快速指南=====
+====目前可用系统====
+>目前A1310主板上可用系统有：[[os:fedora21|梦兰版Fedora21]]、[[os:fedora28|梦兰版Fedora28]]
+===Fedora 21===
+尚未完善的部分：（至2018/10/14）
+  *部分依赖包缺失
+
+===Fedora 28===
+已经完善成熟。
+
+龙梦fedora 28正式版镜像下载地址:[[http://mirror.lemote.com:8000/fedora/fedora28-live/]]，请选择最新版本下载。
+
+====系统安装流程====
+<WRAP center round help 60%>
+>注：由于此版型的昆仑固件版本过老，安装后昆仑固件有可能不能识别引导程序（GRUB和EFI文件，昆仑固件支持UEFI）而导致不能进系统，我们称此为“见了鬼了”，所以推荐在安装前先把pmon烧写进SPI Flash而后再安装系统。
+</WRAP>
+
+
+一、安装Fedora28系统
+
+详情请见主条目：[[guide:fedora_installation|Fedora 安装]]。
+
+二、安装Debian系统
+
+参考刘世伟的文章：[[https://www.bjlx.org.cn/node/895]] 。
+
+====Linux技术笔记====
+==设置Fedora的软件源==
+<WRAP center round important 60%>
+**//注意，此章节问题已经在正式版中解决，无需照此章节操作。//**
+</WRAP>
+
+
+由于梦兰版Fedora28系统默认的软件源设置有误，故需要设置正确的软件源。（随着软件源的更新，一些软件包可能不需要手工下载安装，直接从软件源里安装软件即可自动解决依赖）\\
+<WRAP center round info 60%>
+>软件源就像是Linux的“软件管家”、“软件下载站”，很大一部分Linux发行版的软件都是通过软件源来下载安装的。一个Linux发行版的软件源一般是由负责该发行版的公司或者社区负责维护。由于不同发行版的系统组件和设置各有差别，各自的软件源一般不通用。
+>同时由于不同地区的网络环境不同，且大部分发行版的软件源主服务器都在海外，下载速度会很慢。为了提高下载速度，国内不少高校以及一些互联网公司都建立了镜像源，将海外的源复制一份保存在国内的服务器，并且每天更新。一般发行版默认的地址都是主服务器的地址，为了提高下载速度，我们需要更换国内的源地址。
+>注：上述内容也适用于x86版Linux。但由于龙芯的软件与x86的不通用，龙芯版Linux使用的软件源也不通用。目前梦兰版Fedora可用的源只有梦兰自己的。若x86版Linux需要更换源，可自行搜索合适的镜像源。
+</WRAP>
+
+Fedora使用DNF作为软件包管理器，其软件源地址保存在
+<code>
+/etc/yum.repos.d/
+</code>
+文件夹中的''fedora.repo''、''fedora-updates.repo''、''fedora-update-testing.repo''三个文件中。\\
+其中
+  *fedora.repo为主要的源地址
+  *fedora-updates.repo为系统版本升级时使用的源地址
+  *fedora-update-testing.repo为升级到测试版系统的源地址（一般用不到）
+
+我们需要更改''fedora.repo''、''fedora-updates.repo''这两个文件中保存的地址。
+>注：由于软件源设置是重要的系统文件，受系统权限保护，所以在更改设置前需要进入root权限状态。
+我们以gedit作为编辑器，也可以使用其他顺手的编辑器。
+命令行输入：
+<code>
+sudo gedit /etc/yum.repos.d/fedora.repo
+</code>
+回车后命令行会提示输入密码，此时输入你的用户密码，然后回车。
+<WRAP center round tip 60%>
+>注：UNIX、Linux类系统在命令行中输入密码的时候，**屏幕上是不会有任何变化的**，所以输密码时要注意一下。
+</WRAP>
+
+此时将打开编辑器界面。\\
+我们将文件内容中“127”开头的错误的内网地址更换成梦兰的软件源地址：
+<code>
+http://mirror.lemote.com:8000/
+</code>
+<WRAP center round help 60%>
+>注：梦兰的软件源比较特殊，网址末尾需要加上端口''**:8000**''才能访问，注意不要遗漏。
+</WRAP>
+
+同样的方法我们将''fedora-updates.repo''里面的地址也改过来。
+然后输入
+<code>
+sudo dnf makecache
+</code>
+回车以更新软件源数据，每一次更换软件源地址后，我们都需要更新一次数据。
+
+==安装ffmpeg与VLC==
+如果需要在Fedora28上安装vlc、ffmpeg等多媒体包，可在终端中输入：
+<code>
+sudo dnf install ffmpeg vlc
+</code>
+即可下载安装ffmpeg与VLC。
+
+==昆仑固件mksh的使用说明==
+在mksh中，命令后面的参数是没有''-''的。\\
+如：
+<code>
+reset c
+</code>
+
+==为Fedora28安装Flash(Firefox浏览器使用)==
+1、安装Adobe Flash Player。
+
+安装方法：   
+    # dnf install libflashplayer
+2、在Firefox附加组件中启用flash。
+
+附：在浏览器的地址栏中输入about:config,回车，无视警告进入。搜索extensions.blocklist.enabled，看到值为true，鼠标右击，在弹出框中选择“切换”，extensions.blocklist.enabled的值会变为false，解决出现flash更新问题。
+
+==为Fedora28安装Chromium浏览器==
+详情请见主条目：[[common_software:chromium|Chromium浏览器]]
+
+==为Fedora28安装WPS office套件==
+详情请见主条目：[[common_software:wps|WPS龙芯版]]
+
+==安装gnome软件中心==
+<WRAP center round help 60%>
+>注：经用户反映，GNOME软件中心反应慢，体验糟糕。建议用KDE下的发现者或Yum Extender。
+</WRAP>
+
+<code>
+# sudo dnf install gnome-software
+</code>
+完装软件中心后，可以用鼠标来完成软件的安装与卸载。
+
+=====故障排除手册=====
+<WRAP center round help 60%>
+>注：由于A1310的特殊性，主板质量参差不齐。对于卡死等情况，请不要强行拔电源，会有损坏主板的风险。可以尝试短接主板的重启接口（按重启键）、电源接口（按电源键）或者长按电源键（短接电源接口）至关机（尚未充分验证）
+</WRAP>
+
+====排障表====
+^故障情况^原因分析^解决方案^
+|无法启动|检测USB设备时固件卡死（待确认）|拔掉USB鼠标键盘|
+|无法启动|显卡不支持|拔掉不兼容的显卡|
+|无法启动|CPU架构原因，单条内存时只使用远离CPU的内存槽会不能启动|将内存插到靠近CPU的内存槽|
+|某内存槽插入内存后无法开机|内存条损坏|更换内存条|
+|某内存槽插入内存后无法开机|插槽损坏|不使用该插槽|
+|进入Fedora28、21、13的 LiveCD时卡在载入内核|USB设备ohci fallback导致的问题|载入前拔掉USB键盘鼠标，待进入LiveCD桌面时再插上或者重启或者更换鼠标|
+|系统没有声音|(未确认)|如果装系统的过程中音频线一直插在主板上，重新插拔音频线即可|
+|独立显卡无输出|(原因不明)|1、关机，拔掉独立显卡。2、开机后，再关机，接着拔掉USB外设。3、插上独立显卡，开机。4、即可恢复独立显卡输出。|
+====附录：====
+
+====昆仑固件警报声含义表====
+^警报声^含义^解决方案^
+|长响2秒|内存错误|检查内存条是否插好或故障|
+
+====测试视频====
+^视频名称^类型^连接地址^
+|tears_of_steel_720p.mkv|   720P   |[[http://updates.lemote.com:8000/files/upload/software/temp/tears_of_steel_720p.mkv]]|
+|Lifted.2007.720p.BluRay.AC3.x264.mkv|   720P   |[[http://updates.lemote.com:8000/files/upload/software/temp/video-test/13%20-%20Lifted.2007.720p.BluRay.AC3.x264.mkv]]|
+|sintel_trailer-1080p.mp4|   1080P   |[[http://updates.lemote.com:8000/files/upload/software/temp/video-test/HDVideoSamples/H264/sintel_trailer-1080p.mp4]]|
+|Sintel.2010.2K.x264-VODO.mp4|   2K   |[[http://updates.lemote.com:8000/files/upload/software/UVD-debug/Sintel.2010.2K.x264-VODO.mp4]]|
+|The Great Wall of China in 4k.mp4|   4K   |[[https://share.weiyun.com/5wuvAYv]]|
+|CCTV1(20181028有效)|  m3u8   |[[http://120.198.235.70/112.50.243.8/PLTV/88888888/224/3221226624/1.m3u8]]|
+|CCTV13(20181028有效)|  m3u8   |[[http://120.198.235.70/112.50.243.8/PLTV/88888888/224/3221225817/1.m3u8]]|
+|凤凰资讯(20181028有效)|   m3u8   |[[http://117.169.120.138:8080/live/fhzixun/.m3u8]]|
+
+
+
+=====主板技术手册=====
+====尺寸数据====
+主板CPU风扇尺寸为6cm*6cm，中间转轴直径为3cm；\\
+主板北桥风扇尺寸为3cm*3cm,中间转轴直径为1.5cm。\\
+CPU散热器孔距6cm*3.5cm。
+
+====电压电流数据====
+
+1、主板北桥风扇额定电压为12V，电流为0.08A。
+
+<WRAP center round info 60%>
+>经测试，一额定电压12V、额定电流0.15A的风扇用于该风扇接口，引发了主板报警。
+</WRAP>
+
+  
+2、主板CPU风扇额定电压为12V，额定功率为1.4W，由此计算额定电流约为0.12A。
+
+<WRAP center round info 60%>
+>经测试，对于该风扇接口，目前额定电压12V、额定电流0.1A的风扇也可以工作。
+</WRAP>
+
+
+3、经短期测试，SATA接口旁边的三针插口，也可以用于风扇供电。从内存到蜂鸣器方向三针分别为黑色、红色、白色线。
+
+<WRAP center round info 60%>
+>该接口经过测试，目前可以用于额定电压12V、额定电流0.15A的风扇。
+</WRAP>
+
+
+
+====【实验性，请考虑后谨慎操作】使用PMON固件====
+1、建议直接更换新的芯片，而不是对原装芯片进行刷写。
+
+2、使用编程器对芯片写入A1310可用的PMON固件。
+
+3、可以使用的PMON固件：
+<WRAP center round download 60%>
+{{ :device:原版6核固件.zip |原版6核固件}}
+</WRAP>
+
+4、更换主板上的芯片（印有cFeon字样的8针脚芯片），使用写入新固件的芯片。
+
+5、开机即可使用PMON固件（蜂鸣器声音可能和昆仑稍有不同）。
+
+6、经测试，之前昆仑固件下安装的Fedora28系统，在此PMON固件下依旧可以引导。同时，独立显卡可以直接使用，不需要额外设置。
+
+7、如果发生“掉独显”（视频信号从主板接口输出）的情况，请参照上文列表操作解决故障。
+
+====【实验性，请考虑后谨慎操作】使用开八核的PMON固件和八核版内核====
+**开八核的PMON固件**
+
+1、目前开八核版PMON需要搭配修改的内核使用，若继续使用龙梦内核，则将只有一个CPU核心运作，系统的运行情况将类似龙芯2F时代。
+
+2、使用开核PMON步骤同上，仍然建议使用一个新的芯片刷入新的固件。
+
+3、截止20181027可用的PMON固件下载地址：
+<WRAP center round download 60%>
+[[https://repo.flygoat.com/tmp/a1310-8cores/pmon-A1310-1.1.0-8cores-wrong-param.bin]]
+</WRAP>
+
+
+**一、旧版八核版内核**
+
+1、20181027可用的八核版内核下载地址：
+<WRAP center round download 60%>
+[[https://repo.flygoat.com/tmp/a1310-8cores/vmlinuz.force_8cores]]
+</WRAP>
+
+
+2、使用新内核的方法，修改/boot/boot.cfg，增加新内核的启动选项。
+
+对于不会使用Vim或者Vi的用户，可以使用leafpad这个文本编辑器。安装方法： 终端使用dnf install leafpad 来安装这个图形化的文本编辑器。
+
+3、修改boot.cfg的方法为，在root权限下，终端输入leafpad /boot/boot.cfg ，打开了编辑器后会有如下字样：
+
+    title Fedora, with Linux 4.14.63-3.fc28.lemote.1.mips64el
+    kernel (wd0,0)/vmlinuz-4.14.63-3.fc28.lemote.1.mips64el
+    initrd (wd0,0)/initramfs-4.14.63-3.fc28.lemote.1.mips64el.img
+    args root=/dev/mapper/fedora_sunhaiyong-root rd.lvm.lv=fedora_sunhaiyong/root
+    rd.lvm.lv=fedora_sunhaiyong/swap rhgb quiet
+
+将这段文字复制一遍，插入到原文字位置的下方，并将第二行的vmlinuz-4.14.63-3.fc28.lemote.1.mips64el修改为新内核的文件名称。
+
+保存即可。
+
+4、下载的八核版新内核文件和原内核放在同一个文件夹下即可，即/boot下（应该需要权限拷贝文件）。
+
+5、重启看到启动菜单，选择第二项，就是我们新建的新内核选项，即可使用八核。
+
+6、独立显卡输出，在进入内核后才可以，看不到启动菜单。所以在无独立显卡时，确认自己设置正确后，可以将新增的文字移动到原文字上方，这样开机自动加载第一个内核（新内核）。
+
+7、20181027时，新内核驱动还不够完善，无法使用U盘、USB网卡，但是可以使用基本的苹果、安卓手机的照片传输服务。建议准备有线网环境以方便使用。
+
+**二、新版八核版内核**
+
+1、新版八核版内核可以使用USB无线网卡、U盘。
+
+2、新版八核版内核加入了判断3B1500E和3B1500G的代码，以免E版补丁降低G版性能。
+
+3、新版八核版内核（20181028）相关文件下载地址：
+<WRAP center round download 60%>
+[[https://repo.flygoat.com/tmp/a1310-8cores/linux-gs-tweak-1.tar.gz]]
+</WRAP>
+ 
+
+4、压缩包里有两个文件夹，boot和lib。boot文件夹里包含四个文件：“config-4.14.77gs-tweak-1+”、“System.map-4.14.77gs-tweak-1+”、“vmlinux-4.14.77gs-tweak-1+”、“vmlinuz-4.14.77gs-tweak-1+”。lib文件夹里有一个名为modules的文件夹，modules文件夹内有一个名为“4.14.77gs-tweak-1+”的文件夹。
+
+5、将下载得到的boot文件夹下四个文件拷贝到本机的/boot，将名为“4.14.77gs-tweak-1+”的文件夹拷贝到本机的/lib/modules。
+
+6、按照上文方法，修改/boot/boot.cfg,加入新内核的选项（vmlinuz-4.14.77gs-tweak-1+）。
+
+7、接下来对grub.cfg进行修改，在终端输入：subo grub-mkconfig -o /boot/grub2/grub.cfg，完成后再使用sudo pluma /boot/grub2/grub.cfg命令打开配置文件，找到下面这行：linux	/vmlinuz-4.14.77gs-tweak-1+ root=/dev/sda2 ro rhgb quiet ，在这行下面加上initrd  /vmlinuz-4.14.77gs-tweak-1+，如果上面一行中root=/dev/sda，此行可不必添加
+
+8、重启，在启动菜单选择新的内核，即可。
+
+**三、官方八核版PMON固件（推荐）**
+
+1、该固件可以直接八核启动龙梦Fedora系统，经测试开机即可实现独立显卡输出。
+
+2、用户的/boot/boot.cfg保持系统最初原始设定即可，无需额外修改。
+
+3、下载地址：
+<WRAP center round download 60%>
+{{ :device:3b1500e版.zip |3B1500E版}}|{{ :device:3b1500g版.zip |3B1500G版}}|{{ :device:原版6核固件.zip |原版6核固件}}
+</WRAP>
+
+
+3B1500G版本使用PMON-A1310-1.1.0-8cores-official.bin
+
+3B1500E版本使用PMON-A1310-1.1.0-8cores-uncached-official.bin 
+
+====【实验性，请考虑后谨慎操作】使用开八核、1.5GHz的PMON固件====
+1、此固件是从官方开核固件改来，刷写后无需作额外更改。
+
+2、由于1.5GHz pmon需要更高的电压，故须先硬改cpu电压。
+
+3、由于Flygoat没有时间所以在pmon和操作系统里依然显示频率为1.2GHz，但真实情况下一般为1.5GHz。
+
+4、3B1500E版下载地址：
+<WRAP center round download 60%>
+{{ :device:3b1500e版1.5ghz固件.zip |3B1500E版1.5GHz固件}}
+</WRAP>
+
+
+**步骤如下：**
+
+1、先在主板找到SATA3接口右边的U44芯片。
+
+2、再准备电烙铁、焊锡丝、0402 10kΩ型号的贴片电阻。
+
+3、在U44芯片左边的R689、R701两纵排（注意，下面的R703-R707那一横排贴片电阻与此无关）贴片电阻以如下形式重新焊接：
+
+|0|0|
+|1|1|
+|0|0|
+|0|1|
+|0|1|
+（0代表无电阻，1代表有电阻）
+
+4、再重新开机，测试是否能点亮。
+
+5、在一个空U盘上直接把固件复制到其根目录。
+
+6、进入 PMON 选择内核时按下c键，而后输入main。
+
+7、进入 图形化BIOS 后用方向键切换界面至Advanced菜单，用Tab键下切至set file一行，输入pmon文件名
+
+<WRAP center round important 60%>
+>注意：文件名不可太长，否则无法全部打出，可在刷写前先改成短文件名
+</WRAP>
+
+然后下切至[Do update]，回车。刷写成功后重新启动。如有声音说明就安全了，如没有请自行检查问题或烧写原先的pmon插于主板。
+
+ 

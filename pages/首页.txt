@@ -1,0 +1,125 @@
+===== 欢迎 (Welcome) =====
+
+欢迎来到狗剩百科，非官方的龙芯相关百科全书。
+
+狗剩（Godson），是龙芯（Loongson）的小名。
+
+在这里，你可以了解龙芯相关的各种内容，包括但不限于处理器的型号，参数，历史。也可以获取各种使用龙芯的教程。
+
+同时，我们也欢迎您向我们贡献内容，一起让龙芯变得更好!
+
+Welcome to Godson Wiki, unofficial Loongson-related wiki.
+
+Godson is a nickname of Loongson.
+
+Here, you can get various information about Loongson, such as models, spec, history evaluation. Also, you can obtain guides for using products powered by Loongson.
+
+Meanwhile, any kind of contribution to the wiki is welcomed. Let's make Loongson better!
+
+==== 关于语言 (About Languages) ====
+我们同时接受中文与英文内容，请使用你熟悉的语言进行编辑。
+
+We accept both Chinese & English contents, please edit with you familiar language.
+
+==== 关于本站 (About) ====
+本网站由一群龙芯爱好者组建，其初衷是为龙芯爱好者们提供一个分享信息的平台。
+
+This site was established by Loongson user group. Mainly for information sharing purposes.
+
+详细介绍请移步至[[about|关于 (About) ]]条目。
+
+===== 目录 (Directory) =====
+  * [[教程列表|教程列表 (Guides)]]
+  * [[软件列表|软件列表 (Software)]]
+  * [[资源列表|资源列表 (Resources)]]
+  * [[Errata|硬件勘误 (Hardware Errata)]]
+  * [[ip_block|芯片模块 (IP Blocks)]]
+  * [[users|用户列表 (Users)]]
+
+===== 常用教程与手册 (Useful guides & manuals) =====
+==== 百科使用手册 (Wiki editor's manual) ====
+  * [[GW:Help|狗剩百科使用手册 (Godson wiki editor's manual)]]
+==== 额外软件源 ====
+  * [[software_source:loongnix20extralibs|loongnix20第三方扩展软件仓库]]
+==== FAQ ====
+  * [[general_faq|龙芯通用FAQ (Loongson General FAQ)]]
+==== 操作系统安装 (OS installation) ====
+  * [[guide:fedora_installation|RedHat 系发行版安装指南 (Redhat distros installation guide)]]
+  * [[guide:debian_installation|Debian 系发行版安装指南 (Debian distros installation guide)]]
+  * [[guide:aosc_installation|AOSC 系发行版安装指南 (AOSC distros installation guide)]]
+  * [[guide:gentoo_installation|Gentoo 安装指南 (Gentoo installation guide)]]
+  * [[https://www.linuxfromscratch.org/~xry111/lfs-mips64el/|Linux From Scratch MIPS64 EL Port (experimental)]]
+==== 常用软件使用教程 (Useful software guides) ====
+  * [[common_software:chromium|Chromium 浏览器]]
+  * [[common_software:wps|WPS 龙芯版]]
+  * [[virtual_machine_software:qemu|QEMU]]
+  * [[qemu:emulate_loongson|x86 机器通过 QEMU 模拟龙芯机器教程（Emulate Loongson On x86 Machine）]]
+  * [[game:minecraft|Minecraft]]
+  * [[game:xmame|Xmame街机模拟器]]
+  * [[common_software:dingtalk|dingtalk 钉钉]]
+==== 集成开发环境使用教程 (IDE guides) ====
+  * [[programming_software_ide:codeblocks|Code::Blocks]]
+  * [[programming_software_ide:clion|CLion]]
+  * [[programming_software_ide:intellij_idea|IntelliJ IDEA]]
+  * [[programming_software_ide:goland|GoLand]]
+==== 常见设备 (Common Devices) ====
+=== Loongson 1C0300 ===
+  * [[device:loongson_1c|智龙开发板 (OpenLoongson EVB)]]
+=== Loongson-2 ===
+== Loongson-2F ==
+  * [[device:lemote_8089|Lemote 8089]]
+  * [[device:lemote_fuloong|Lemote Fuloong]]
+  * [[device:lemote_lynloong|Lemote Lynloong]]
+=== Loongson-2K ===
+== Loongson 2K1000 ==
+  * [[device:loongson_pi_2|龙芯派2代 (Loongson-Pi Gen2)]]
+=== Loongson-3A ===
+== Loongson 3A4000 ==
+  * [[device:lemote_a1901|Lemote A1901]]
+=== Loongson-3B ===
+== Loongson 3B1500 ==
+  * [[device:lemote_a1310|Lemote A1310]]
+
+===== 常用资源 (Useful Resources) =====
+  * [[http://www.loongson.cn/product/dc/|龙芯产品下载中心 (Loongson offical download center)]]
+  * [[http://ftp.loongnix.cn|龙芯开源社区ftp (Loongnix FTP)]]
+  * [[http://cgit.loongnix.cn/cgit|龙芯社区开源项目源码库 (Loongnix cgit)]]
+  * [[http://loongide.com/content/|龙芯1x嵌入式开发工具 (Loongson 1x Embedded Development Toolkit)]]
+  * [[http://mirror.lemote.com:8000/|航天龙梦源 (Lemote repo)]]
+  * [[http://updates.lemote.com:8000/|航天龙梦ftp (Lemote FTP)]]
+  * [[http://mirror.lemote.com:8000/fedora/fedora28-live/|航天龙梦Fedora28下载 (Lemote Fedora28 Release Page)]]
+  * [[http://dev.lemote.com:8000/cgit/linux-official.git/|航天龙梦Linux内核Git (Lemote Kernel cgit)]]
+  * [[https://github.com/loongson-community|Loongson Community]]
+  * [[https://github.com/loongarch64|loongarch64]]
+  * [[https://git.kernel.org/pub/scm/linux/kernel/git/mips/linux.git/|Linux-MIPS git]]
+
+===== 相关网站 (Related websites) =====
+==== 官网 (Offical Websites) ====
+  * [[http://www.loongson.cn/|龙芯官网 (Loongson)]]
+  * [[http://www.loongnix.cn|龙芯开源社区 (Loongnix)]]
+  * [[http://www.lemote.com/|航天龙梦官网 (Lemote)]]
+  * [[http://www.loongsonclub.com/|龙芯俱乐部 (Loongson Club)]]
+  * [[http://www.openloongson.cn|龙芯开发者商城 (Loongson Club Store)]]
+==== 相关社区 ====
+=== GitHub社区 ===
+  * [[https://github.com/loongson-community|Loongson Community]]
+  * [[https://github.com/loongarch64|loongarch64]]
+  * [[https://github.com/loongson|Great Loongson Union]]
+=== 其他社区 ===
+  * [[https://aosc.io/zh-cn/|安同开源社区 (AOSC)]]
+  * [[https://www.bjlx.org.cn/|北京龙芯&Debian用户俱乐部 (bjlx)]]
+==== BBS论坛 ====
+  * [[https://tieba.baidu.com/f?kw=%E9%BE%99%E8%8A%AF|百度贴吧龙芯吧 (Tieba)]]
+  * [[http://bbs.loongnix.cn/|龙芯开源社区论坛 (Loongson BBS)]]  
+  * [[https://lemote.oukan.online/|龙梦BBS (Lemote BBS)]]
+  * [[http://www.openloongson.org/|龙芯俱乐部BBS (Loongson Club BBS)]]
+  * [[https://loongarch.dev/|LoongArch 开放社区 (LoongArch Open Community)]]
+  * [[http://bbs.16rd.com/forum-472-1.html|一牛网龙芯论坛 (16rd Loongson area)]]
+==== 社区新闻平台（Community News Platform） ====
+  * [[https://micronews.godson.ac.cn/|狗剩微闻（Godson micronews）]]
+==== 聊天频道（Chat Channels）====
+  * IRC freenode #loongson (English Only)
+  * Telegram [[http://t.me/loongson_users|@loongson_users]]
+==== 用户博客 (Users' Blogs) ====
+  * [[http://www.loongson.xyz/|我要成为铁杆龙芯粉]]
+  

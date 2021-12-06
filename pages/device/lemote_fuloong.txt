@@ -1,0 +1,127 @@
+====== Lemote Fuloong ======
+Lemote Fuloong 是龙梦推出的迷你主机的英文名称，也称之为“福珑迷你电脑”。 \\ 
+在内核代码树中，称之为“lemote-fuloong-2f-box”
+===== 硬件组成 =====
+
+^硬件名称^芯片型号^参数资料^
+|中央处理器|Loongson 2F|数据手册|
+|南桥芯片|AMD CS5536AD|[[https://wiki.godson.ac.cn/_media/device:cs5536_db.pdf|数据手册]]|
+|板载显示芯片|SIS 315E + 301|支持VGA，DVI和svideo输出|
+|板载显存|HY57V281620FTP X 2|两片共32MB|
+|系统BIOS芯片|Flash存储芯片MX29LV040|容量 512KB|
+|内存插槽|笔记本内存插槽，最大支持1G容量|DDR II , 667MHz|
+|板载网络芯片|RTL8110SC|单网络接口|
+|板载声卡芯片|ALC655|全双工|
+主板正面：散热片下面靠近风扇是CPU,靠近显存是显卡芯片，南桥安装硬盘时会被遮盖。
+{{:device:fuloong003.jpg?800|}} \\ 
+主板背面：主要是内存插槽和BIOS芯片，也包括声卡芯片和混合视频输出芯片SIS301
+{{:device:fuloong004.jpg?800|}} \\ 
+AMD的南桥芯片，在龙梦2F系列主机中大多配置这个芯片，灵珑Lynloong 9003除外
+{{:device:fuloong006.jpg?400|}} \\ 
+网络芯片 \\ 
+{{:device:fuloong005.jpg?400|}} \\ 
+固件存储芯片和声卡芯片\\ 
+{{:device:fuloong010.jpg?400|}} \\ 
+===== 软件架构 =====
+龙芯2F处理器指令集架构兼容MIPS III，并提供一些扩展。\\ 
+其上运行的软件一共分三个部分：
+  - 硬件系统固件。
+  - 操作系统内核。
+  - 应用软件。
+
+==== 硬件系统固件 ====
+
+系统固件是烧写在512KB闪存的一个系统硬件管理程序，福珑使用的是PMON。它在系统加电时进行硬件基本系统的初始化，比如处理器和内存。\\ 
+之后会扫描主板上的其他硬件，并进行配置。它也提供了一个类似X86/64主机的图形配置界面，除此之外它也提供了一个命令行界面。\\ 
+支持一些底层硬件调试和系统加载等功能。默认情况下，Pmon启动时会查找U盘和硬盘，定位存储介质第一个分区的__boot.cfg__文件。\\ 
+__boot.cfg__文件的主要内容是操作系统内核的具体位置，并可以传递一些参数给即将运行的内核。\\ 
+Pmon加载完内核后，会启动内核，把控制权交给内核。
+
+{{:device:fuloong-pmon-001.jpg?400|}}
+{{:device:fuloong-pmon-002.jpg?400|}}
+==== 操作系统内核 ====
+
+操作系统内核，可以理解为硬件运行的一个抽象层。它相当于一个管家，管理系统硬件提供的各种资源，提供给系统程序、用户程序使用。\\ 
+它的主要功能集中在一个内核文件中，也包括一些没有加入到内核的硬件驱动程序。它决定着系统运行效率和硬件支持程度。\\ 
+龙芯2F处理器可以运行多种类unix的操作系统内核，比如开源的Linux，NetBSD等。软硬件支持程度取决于mips社区的移植进度。
+
+
+{{:device:fuloong-netbsd-001.jpg?400|}}
+{{:device:fuloong-netbsd-002.jpg?400|}}
+===== 源代码获取和编译 =====
+
+==== pmon 源代码 ====
+
+
+https://github.com/kisom/pmon \\ 
+https://github.com/loongson-community/pmon-2ef \\ 
+https://gitee.com/bexsder/pmon-orig  \\ 
+
+三者根据网络状况任选其一即可。\\ 
+
+源代码下载，即git clone，确保git工具程序已经安装
+<code>
+
+git clone https://github.com/kisom/pmon.git
+ 
+</code>
+==== pmon 工具链 ====
+
+https://mirrors.tuna.tsinghua.edu.cn/loongson/pmon/toolchain-pmon.tar.bz2 \\ 
+
+工具链安装：为确保编译工具可用，工具链需安装需要管理员权限，可以使用su 或 sudo 获取，如下安装指令假设当前用户可sudo获取权限。
+
+<code>
+
+sudo tar xvf toolchain-pmon.tar.bz2 -C /
+
+</code>
+
+上述命令可以把工具链解压到如下目录：
+
+<code>
+
+/usr/local/comp/mips-elf/gcc-2.95.3/
+
+</code>
+
+
+
+同时也会在当前目录新增 __readme.txt__ 文件，文件里描述了大致的编译流程：
+
+<code>
+
+debian-i386  lenny
+
+yeeloong:
+cd pmon/zloader.2f7inch
+make cfg
+/usr/local/sbin/build.sh   # 工具链内含脚本
+
+fuloong:
+cd pmon/zloader
+make cfg
+/usr/local/sbin/build.sh
+
+output:
+pmon_ram.bin
+pmon.bin
+
+</code>
+
+文件 __/usr/local/sbin/build.sh__ 内容：
+
+<code>
+
+#!/bin/bash
+export MKDEP=makedepend     # 需安装 xutils-dev，是xorg 构建所需要的一个工具程序。
+export PATH=/usr/local/comp/mips-elf/gcc-2.95.3/bin/:$PATH
+make cfg            # 更新配置
+make tgt=ram
+mv gzram pmon_ram.bin
+make tgt=rom    # 产生烧制文件 gzrom.bin
+mv gzrom.bin  pmon.bin
+mkdir -d /var/lib/tftpboot
+cp pmon.bin pmon_ram.bin /var/lib/tftpboot
+
+</code>

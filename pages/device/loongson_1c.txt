@@ -1,0 +1,61 @@
+====== 智龙开源主板 ======
+=====智龙V3作为samba服务器的方法=====
+//建议将本教程通读一遍理解之后再进行操作//
+====1.PMON中执行====
+  *mtd_erase /dev/mtd0
+  *mtd_erase /dev/mtd1
+  *devcp tftp://192.168.1.167/vmlinuz /dev/mtd0\\
+   devcp tftp://192.168.1.167/rootfs.jffs2 /dev/mtd1
+  *set al /dev/mtd0
+  *set append "root=/dev/mtdblock1 console=ttyS2,115200 noinitrd  init=/linuxrc  rw  rootfstype=jffs2"
+  *reboot
+
+>注：请将上述步骤中的ip修改为你搭建的tftp服务器的ip，以下出现ip的地方请根据上下文自行判断。
+
+====2.进系统之后执行====
+  *输入root并回车
+  *ifconfig eth0 192.168.1.124
+
+>注：此处填入智龙的ip地址，下一步中使用的smb.conf配置文件中也有一处需要修改为此ip地址，见下图。
+{{:device:samba配置文件中修改IP地址.png?400|}}\\
+  *tftp -r smb.conf -g 192.168.1.167 （需提前在电脑端打开tftp32，下载后文提供的压缩包，将里面的smb.conf拷入tftp32的目录）
+  *mv smb.conf /etc/samba/
+  *smbpasswd -a root
+  *屏幕会提示New SMB password:         （此处需要设个密码）
+  *屏幕会提示Retype new SMB password:  （再次输入密码）
+  *屏幕会提示Added user root.
+  *mkdir /home/share
+  *chmod 777 /home/share
+  *cp /etc/samba/smb.conf /home/share
+  *smbd
+  *nmbd
+  *reboot
+
+>注：/home/share即共享文件夹路径。
+
+====3.Windows系统下操作====
+  *在开始菜单上右键-->运行
+{{:device:在电脑端运行中输入.png?400|}}\\
+  *提示输入用户名和密码，用户名root，密码：输入上面建立root用户时的密码
+  *点开下图中的homes文件夹就可以看见smb.conf文件，root文件夹打开也是一样的内容
+{{:device:建立好samba服务器后会看到.png?400|}}\\
+
+====至此建立samba的工作完毕====
+
+由于智龙存储空间有限，挂载U盘，并将u盘所在目录作为共享文件夹，可以极大的扩充存储容量。\\
+  *只需将smb.conf文件，即下图中红框处修改为 path = /mnt，保存退出。（如下图）
+{{:device:将共享目录修改为U盘所在目录.png?400|}}\\
+  *reboot
+  *ifconfig eth0 192.168.1.124
+  *mount /dev/sda1 /mnt   (此处根据实际情况，也有可能是sda，sdb等，插入U盘后，执行dmesg在最下方能看到)  
+
+>注1：此时在电脑端开始菜单运行里打开智龙ip应该就能看见U盘里的文件了。
+
+>注2：U盘格式话为FAT32格式，可读写。
+
+>注3：U盘格式话为NTFS格式，只读。
+
+====相关文件下载链接====
+  *链接：[[https://pan.baidu.com/s/1ivy0_LIYXc9uK_ZsbE3AKA]]
+  *提取码：egqm
+

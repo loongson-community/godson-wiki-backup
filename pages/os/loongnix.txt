@@ -1,0 +1,6 @@
+======Loongnix======
+Loongnix，是由龙芯中科维护的 Linux 发行版，由 [[os:fedora21|Fedora21]] 衍生而来。2020年3月14日开始基于 CentOS 7.7 的 Loongnix server 1.7 发布，其中 Lorax 版成为龙芯平台上第一个允许 PXE 安装、网络定制化安装的 Loongnix 系操作系统。
+
+Loongnix 的二进制 Flag 为 ''-march=loongson3a'' ，适用于GS464(R2)之后的所有64位龙芯处理器。
+
+在 Loongnix 2.0 版本以前其系统内核为龙芯自主维护的 3.10 内核，默认 GCC 为 4.9 版本。龙芯官方也提供了 GCC 8.0 版本的 Devtoolset7-gbd 编译链，其中添加了很多对龙芯拓展指令集的支持和优化。

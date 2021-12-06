@@ -1,0 +1,54 @@
+====== Minecraft ======
+经过 [[https://blog.flygoat.com/|FlyGoat]] 的努力，终于[[https://blog.flygoat.com/archives/112|把 LWJGL 库移植到了龙芯平台上]]。
+
+此页提供打包好后的游戏本体压缩包，并提供相关教程。
+<WRAP center round important 60%>
+>注：现阶段 LWJGL 库不支持龙芯 [[os:loongnix|Loongnix]] 操作系统，故推荐在[[os:fedora28|龙梦 Fedora28]] 上进行游玩。
+</WRAP>
+
+===== 下载 =====
+游戏本体启动器为 Hello Minecraft! Launcher (HMCL) 3.2.139 版本，自带 1.14.4（带 OptiFine）、1.15.1 和 1.15.2 版本的游戏主体。
+
+<WRAP center round tip 60%>
+>注：我们推荐您使用 AMD RX550 及以上的显卡，以获得更佳的游戏体验。
+</WRAP>
+
+Minecraft 下载链接：
+<WRAP center round download 60%>
+[[https://share.weiyun.com/5Kq3a8z|纯净整合包：https://share.weiyun.com/5Kq3a8z]]\\
+[[https://share.weiyun.com/5wBD6yf|1.14.4预先调试优化整合包：https://share.weiyun.com/5wBD6yf]]
+</WRAP>
+
+===== 安装游玩 =====
+1、下载完后首先解压压缩包。
+<WRAP center round important 60%>
+>注：解压后的文件路径中不能含有中文！否则会无法正常进入游戏！
+</WRAP>
+2、解压后进入 ''mc-loongson'' 文件夹中，在其中打开终端，输入以下命令打开 HMCL 。
+<code>
+$java -jar HMCL-3.2.139.jar
+</code>
+3、进入后会提示**新建帐户**，如没有正版帐户请直接在程序默认选择**离线登陆**的情况下输入你想取的用户名，如是正版玩家可在**登陆方式**选择栏中下拉选择正版登陆，如有条件亦可选择**外置登陆**。
+
+4、本压缩包自带 1.14.4、1.15.1 和 1.15.2 三个版本的游戏主体。**__由于 FlyGoat 只移植了 LWJGL3 ，故只能游玩 1.14 及以后的版本。__**压缩包自带的 1.14.4 版本自带 OptiFine 。其余设置可查询 [[https://www.mcbbs.net/|mcbbs]]（我的世界中文论坛）或自行摸索。
+
+5、选择想要进入的版本，点击**启动游戏**，即可进入游戏。
+  
+===== 遇错解决方案 =====
+==== 不能进入游戏 ====
+{{ :game:cannot-enter-mc.png?400 |}}
+<WRAP center round important 60%>
+>注：如果是在龙芯 [[os:loongnix|Loongnix]] 上遇到此种情况，建议请勿在 [[os:loongnix|Loongnix]] 上继续进行 BUG 排除，建议在 [[os:fedora28|龙梦 Fedora28]] 上进行游玩。
+</WRAP>
+如遇到如图所示的典型出错时，请按照以下几点**依次**进行排错：
+
+  - 首先排查游戏本体路径中是否有中文。如有，请把游戏复制或移动到纯英文目录下，再尝试进入游戏。\\
+  - 打开文件夹选项中的显示隐藏文件，进入 ''~/.minecraft/versions/1.1x.x'' 路径中删去 ''1.1x.x-native'' 文件夹（其中 1.1x.x 是指对应的版本）。\\
+  - 重装 java 和 jna 。在终端中输入如下命令：
+<code>
+#yum remove java jna
+</code>
+<code>
+#yum install java-devel jna
+</code>
+

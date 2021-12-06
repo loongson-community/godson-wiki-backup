@@ -1,0 +1,88 @@
+====== 资源列表 ======
+===== 社区资源网站主页 =====
+==== 龙芯社区 ====
+  * [[http://www.loongson.cn/product/dc/|龙芯产品下载中心]]
+  * [[http://ftp.loongnix.cn|龙芯开源社区 ftp]]
+  * [[http://cgit.loongnix.cn/cgit|龙芯社区开源项目源码库]]
+  * [[http://www.loongnix.cn/index.php/Loongnix|龙芯开源社区 Loongnix 操作系统下载页面]]
+  * [[http://mirror.lemote.com:8000/|航天龙梦源]]
+  * [[http://updates.lemote.com:8000/|航天龙梦 ftp]]
+  * [[http://mirror.lemote.com:8000/fedora/fedora28-live/|航天龙梦 Fedora28 下载]]
+  * [[http://dev.lemote.com:8000/cgit/linux-official.git/|航天龙梦 Linux 内核 Git]]
+  * [[https://github.com/loongson-community|Loongson-Community - Github]]
+  * [[https://git.kernel.org/pub/scm/linux/kernel/git/mips/linux.git/|Linux-MIPS git]]
+
+==== RTOS 社区 ====
+  * [[https://github.com/RT-Thread/rt-thread|RTT 官方 GitHub 主页]]
+  * [[https://github.com/zhuangwei123/rt-thread|RTT 龙芯1C 分支（风往东吹维护）]]
+  * [[https://gitee.com/rtthread/rt-thread/tree/master/bsp/ls2kdev|RTT 龙芯2K1000（龙芯派） 分支]]
+
+===== 电子书 =====
+==== MIPS 汇编 ====
+  * {{ :mips体系结构中文版.pdf |mips体系结构中文版(See MIPS Run 2nd Edition)}}
+
+====  MIPS R5 官方手册 ====
+  * {{ :md00083-2b-mips64int-afp-05.04.pdf |MIPS® Architecture For Programmers Volume I-A: Introduction to the MIPS64® Architecture}}\\
+(2013-11-20，v5.04，119页)
+
+  * {{ :md00087-2b-mips64bis-afp-05.04.pdf |MIPS® Architecture For Programmers Volume II-A: The MIPS64® Instruction Set}}\\
+(2013-12-11，v5.04，440页)
+
+  * {{ :md00091-2b-mips64pra-afp-05.04.pdf |MIPS® Architecture For Programmers Volume III: The MIPS64® and microMIPS64™ Privileged Resource Architecture}}\\
+(2014-01-15，v5.04，304页)
+
+==== MIPS MSA 官方手册及编程指南 ====
+MIPS MSA 官方介绍页：[[https://www.mips.com/products/architectures/ase/simd]]\\
+  * {{ :md00866-2b-msa32-afp-01.12.pdf |MIPS® Architecture for Programmers Volume IV-j: The MIPS32® SIMD Architecture Module}}\\
+(2016-02-03，v1.12，325页)\\
+官网链接：[[https://www.mips.com/?do-download=the-mips32-simd-architecture-module]]
+
+  * {{ :md00868-1d-msa64-afp-01.12.pdf |MIPS® Architecture for Programmers Volume IV-j: The MIPS64® SIMD Architecture Module}} \\
+(2016-02-03，v1.12，326页)\\
+官网链接：[[https://www.mips.com/?do-download=the-mips64-simd-architecture-module]]
+
+  * {{ :md00927-simd-programming-whitepaper.pdf |MIPS SIMD programming whitepaper}}\\
+(8页)\\
+官网链接：[[https://www.mips.com/?do-download=mips-simd-programming-white-paper]]
+
+==== MIPS VZ 官方手册 ====
+MIPS MSA 官方介绍页：[[https://www.mips.com/products/architectures/ase/virtualization]]\\
+  * {{ :md00846-2b-vzmips32-afp-01.06.pdf |MIPS32® Architecture for Programmers Volume IV-i: Virtualization Module of the MIPS32® Architecture}}\\
+(2013-12-10，v1.06，175页)\\
+官网链接：[[https://www.mips.com/?do-download=virtualization-module-of-the-mips32-architecture-01-06]]
+
+  * {{ :md00847-2b-vzmips64-afp-01.06.pdf |MIPS64® Architecture for Programmers Volume IV-i: Virtualization Module of the MIPS64® Architecture}}\\
+(2013-12-10，v1.06，182页)\\
+官网链接：[[https://www.mips.com/?do-download=virtualization-module-of-the-mips64-architecture]]
+
+===== 个人网站 =====
+==== 个人博客/专栏 ====
+  * [[https://blog.csdn.net/caogos|勤为本 CSDN 专栏]]
+  * [[https://blog.csdn.net/tongxin1101124|tongxin1101124 CSDN 专栏]]
+  * [[https://www.jianshu.com/u/cb622f1cdbc8|完美panini_ 简书首页]]
+
+==== 个人GitHub/Gitee主页 ====
+  * [[https://gitee.com/caogos/OpenLoongsonLib1c|勤为本 龙芯1C 开源库 Gitee 主页]]
+  * [[https://github.com/sundm75|孙冬梅 GitHub 主页]]
+  * [[https://github.com/lshw|刘世伟 GitHub 主页]]
+  * [[https://gitee.com/brep|brep GitHub 主页]]
+  * [[https://github.com/chinesebear|chinesebear GitHub 主页]]
+  * [[https://github.com/FlyGoat|FlyGoat GitHub 主页]]
+
+==== 个人 B 站主页 ====
+  * [[https://space.bilibili.com/515589198|孙冬梅 B 站主页]]
+  * [[https://space.bilibili.com/3101171|鸽工芯事 B 站主页]]
+
+===== 以软件分类 =====
+==== 编译链/工具链 ====
+  * [[https://codescape.mips.com/components/toolchain/2017.10-07/downloads.html|mips 官方工具链]]
+  * [[http://musl.cc/|musl 工具链]]
+
+==== 额外软件源 ====
+  * [[software_source:loongnix20extralibs|loongnix20第三方扩展软件仓库]]
+
+==== QEMU ====
+  * [[https://gitee.com/loongsonlab/qemu|龙芯全系 qemu 模拟器]]
+
+==== 软件查找器 ====
+  * {{ :ls_soft_list-sqlite.rar |龙芯软件查找器}}（x86 windows 平台）

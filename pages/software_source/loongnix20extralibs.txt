@@ -1,0 +1,197 @@
+====== loongnix20第三方扩展软件仓库 ======
+===== 添加第三方扩展软件仓库源 =====
+<WRAP center round important 60%>
+提醒：本软件仓库是龙芯loongarch爱好者们本着“查漏补缺”的原则，对loongnix20官方软件仓库暂缺的开源软件或较新版本，自行编译打包分享。本软件仓库和软件包提供者，不提供任何风险保障和更新服务，使用者请风险自担！
+[[http://doc.loongnix.cn/web/#/841|原始链接]]
+</WRAP>
+修改 /etc/apt/sources.list，加入
+
+<code>
+deb http://pkg.huaerlease.cn/loongnix20 testing extralibs 
+deb http://pkg.huaerlease.cn/loongnix20 neibu extralibs
+deb http://pkg.huaerlease.cn/loongnix20 zheteng extralibs
+</code>
+
+===== 添加第三方扩展软件仓库的公钥 =====
+在用户目录下，输入以下命令：
+
+<code>
+sudo apt-key adv --fetch-keys 'http://pkg.huaerlease.cn/loongnix20/key/public.key
+</code>
+
+输入下面命令更新本地仓库索引列表，并验证第三方源是否添加成功
+
+<code>
+sudo apt-get update
+</code>
+
+===== 目前添加的主要软件列表 =====
+<WRAP center round info 60%>
+安装方法：终端输入 ''sudo apt-get install //软件名//''
+</WRAP>
+
+  - musescore3    [BH8UEC]    开源五线谱制谱软件
+  - texstudio    [BH8UEC]    LaTeX编辑器
+  - shotcut        [BH8UEC]    开源视频编辑软件
+  - krita        [BH8UEC]    开源绘画软件
+  - deadbeef        [BH8UEC]    类似Foobar2000的音频播放器
+  - hplip        [BH8UEC]    惠普打印机驱动 v3.2
+  - kdevelop        [db]    KDE桌面环境开发工具IDE
+  - bashtop        [db]    命令行工具程序
+  - freecad        [BH8UEC]    开源机械制图软件
+  - kicad        [BH8UEC]    开源PCB设计软件
+  - plasma-desktop        [db]    KDE5.14桌面环境最小程序集
+  - kdesdk        [db]    KDE5.14开发工具组件
+  - kdenetwork        [db]    KDE5.14网络组件
+
+<code>
+# 安装KDE组件
+# 安装plasma-desktop基本步骤
+# 安装过程会出现一个对话框，让用户选择哪个登录管理器
+# 建议选择 lightdm，随KDE安装的sddm可做为备用
+sudo apt-get update
+sudo apt-get install kde-plasma-desktop
+# 安装kdenetwork
+sudo apt-get install kdenetwork
+sudo apt-get install kdevelop-python kdevelop-php
+</code>
+
+===== Debian11系统包移植仓库列表 =====
+<WRAP center round info 60%>
+由Debian11系统移植到loongnix20
+</WRAP>
+
+修改 /etc/apt/sources.list，加入
+
+<code>
+deb http://pkg.huaerlease.cn/loongnix20 deb11mini extralibs
+</code>
+
+现已移植入库软件包：
+
+  * cockpit_215-1_all.deb
+  *cockpit-bridge_215-1_loongarch64.deb
+  *cockpit-bridge-dbgsym_215-1_loongarch64.deb
+  *cockpit-dashboard_215-1_all.deb
+  *cockpit-doc_215-1_all.deb
+  *cockpit-machines_215-1_all.deb
+  *cockpit-networkmanager_215-1_all.deb
+  *cockpit-packagekit_215-1_all.deb
+  *cockpit-pcp_215-1_loongarch64.deb
+  *cockpit-pcp-dbgsym_215-1_loongarch64.deb
+  *cockpit-storaged_215-1_all.deb
+  *cockpit-system_215-1_all.deb
+  *cockpit-tests_215-1_loongarch64.deb
+  *cockpit-tests-dbgsym_215-1_loongarch64.deb
+  *cockpit-ws_215-1_loongarch64.deb
+  *cockpit-ws-dbgsym_215-1_loongarch64.deb
+  *gir1.2-mutter-2_3.28.4+git20200505-0ubuntu18.04.2_loongarch64.deb
+  *gnutls-bin_3.7.1-5_loongarch64.deb
+  *gnutls-bin-dbgsym_3.7.1-5_loongarch64.deb
+  *gnutls-doc_3.7.1-5_all.deb
+  *golang-dbus-dev_5.0.3-2_all.deb
+  *golang-github-coreos-go-systemd-dev_22.1.0-3_all.deb
+  *golang-github-jtolds-gls-dev_4.20.0-2_all.deb
+  *golang-github-ovh-go-ovh-dev_0.0~git20181109.ba5adb4-5_all.deb
+  *golang-github-pkg-errors-dev_0.9.1-1_all.deb
+  *golang-github-proglottis-gpgme-dev_0.1.1-1_all.deb
+  *golang-gopkg-ini.v1-dev_1.57.0-1_all.deb
+  *guile-gnutls_3.7.1-5_loongarch64.deb
+  *guile-gnutls-dbgsym_3.7.1-5_loongarch64.deb
+  *libdnsjava-java_2.1.8-2_all.deb
+  *libfontbox-java_1.8.16-2_all.deb
+  *libfontbox-java-doc_1.8.16-2_all.deb
+  *libgnutls28-dev_3.7.1-5_loongarch64.deb
+  *libgnutls30_3.7.1-5_loongarch64.deb
+  *libgnutls30-dbgsym_3.7.1-5_loongarch64.deb
+  *libgnutls-dane0_3.7.1-5_loongarch64.deb
+  *libgnutls-dane0-dbgsym_3.7.1-5_loongarch64.deb
+  *libgnutls-openssl27_3.7.1-5_loongarch64.deb
+  *libgnutls-openssl27-dbgsym_3.7.1-5_loongarch64.deb
+  *libgnutlsxx28_3.7.1-5_loongarch64.deb
+  *libgnutlsxx28-dbgsym_3.7.1-5_loongarch64.deb
+  *libhogweed6_3.7.3-1_loongarch64.deb
+  *libhogweed6-dbgsym_3.7.3-1_loongarch64.deb
+  *libjempbox-java_1.8.16-2_all.deb
+  *libjempbox-java-doc_1.8.16-2_all.deb
+  *libmetainf-services-java_1.8-1_all.deb
+  *libmetainf-services-java-doc_1.8-1_all.deb
+  *libmutter-2-0_3.28.4+git20200505-0ubuntu18.04.2_loongarch64.deb
+  *libmutter-2-0-dbgsym_3.28.4+git20200505-0ubuntu18.04.2_loongarch64.deb
+  *libmutter-2-dev_3.28.4+git20200505-0ubuntu18.04.2_loongarch64.deb
+  *libnettle8_3.7.3-1_loongarch64.deb
+  *libnettle8-dbgsym_3.7.3-1_loongarch64.deb
+  *libosdcpu3.4.3_3.4.3-3_loongarch64.deb
+  *libosdcpu3.4.3-dbgsym_3.4.3-3_loongarch64.deb
+  *libosd-dev_3.4.3-3_loongarch64.deb
+  *libosd-doc_3.4.3-3_all.deb
+  *libosdgpu3.4.3_3.4.3-3_loongarch64.deb
+  *libosdgpu3.4.3-dbgsym_3.4.3-3_loongarch64.deb
+  *libp11-kit0_0.23.22-1_loongarch64.deb
+  *libp11-kit0-dbgsym_0.23.22-1_loongarch64.deb
+  *libp11-kit-dev_0.23.22-1_loongarch64.deb
+  *libpcp3_5.2.6-1_loongarch64.deb
+  *libpcp3-dev_5.2.6-1_loongarch64.deb
+  *libpcp-gui2_5.2.6-1_loongarch64.deb
+  *libpcp-gui2-dev_5.2.6-1_loongarch64.deb
+  *libpcp-import1_5.2.6-1_loongarch64.deb
+  *libpcp-import1-dev_5.2.6-1_loongarch64.deb
+  *libpcp-import-perl_5.2.6-1_loongarch64.deb
+  *libpcp-logsummary-perl_5.2.6-1_loongarch64.deb
+  *libpcp-mmv1_5.2.6-1_loongarch64.deb
+  *libpcp-mmv1-dev_5.2.6-1_loongarch64.deb
+  *libpcp-mmv-perl_5.2.6-1_loongarch64.deb
+  *libpcp-pmda3_5.2.6-1_loongarch64.deb
+  *libpcp-pmda3-dev_5.2.6-1_loongarch64.deb
+  *libpcp-pmda-perl_5.2.6-1_loongarch64.deb
+  *libpcp-trace2_5.2.6-1_loongarch64.deb
+  *libpcp-trace2-dev_5.2.6-1_loongarch64.deb
+  *libpcp-web1_5.2.6-1_loongarch64.deb
+  *libpcp-web1-dev_5.2.6-1_loongarch64.deb
+  *libpdfbox-java_1.8.16-2_all.deb
+  *libpdfbox-java-doc_1.8.16-2_all.deb
+  *libplexus-resources-java_1.1.0-2_all.deb
+  *libplexus-utils2-java_3.3.0-1_all.deb
+  *libplexus-utils2-java-doc_3.3.0-1_all.deb
+  *libwlroots3_0.7.0-2_loongarch64.deb
+  *libwlroots3-dbgsym_0.7.0-2_loongarch64.deb
+  *libwlroots-dev_0.7.0-2_loongarch64.deb
+  *libwlroots-examples_0.7.0-2_loongarch64.deb
+  *libwlroots-examples-dbgsym_0.7.0-2_loongarch64.deb
+  *mutter_3.28.4+git20200505-0ubuntu18.04.2_loongarch64.deb
+  *mutter-common_3.28.4+git20200505-0ubuntu18.04.2_all.deb
+  *mutter-dbgsym_3.28.4+git20200505-0ubuntu18.04.2_loongarch64.deb
+  *nettle-bin_3.7.3-1_loongarch64.deb
+  *nettle-bin-dbgsym_3.7.3-1_loongarch64.deb
+  *nettle-dev_3.7.3-1_loongarch64.deb
+  *opensubdiv-tools_3.4.3-3_loongarch64.deb
+  *opensubdiv-tools-dbgsym_3.4.3-3_loongarch64.deb
+  *p11-kit_0.23.22-1_loongarch64.deb
+  *p11-kit-dbgsym_0.23.22-1_loongarch64.deb
+  *p11-kit-modules_0.23.22-1_loongarch64.deb
+  *p11-kit-modules-dbgsym_0.23.22-1_loongarch64.deb
+  *pcp_5.2.6-1_loongarch64.deb
+  *pcp-conf_5.2.6-1_loongarch64.deb
+  *pcp-doc_5.2.6-1_all.deb
+  *pcp-export-pcp2graphite_5.2.6-1_loongarch64.deb
+  *pcp-export-pcp2influxdb_5.2.6-1_loongarch64.deb
+  *pcp-export-zabbix-agent_5.2.6-1_loongarch64.deb
+  *pcp-gui_5.2.6-1_loongarch64.deb
+  *pcp-import-collectl2pcp_5.2.6-1_loongarch64.deb
+  *pcp-import-ganglia2pcp_5.2.6-1_all.deb
+  *pcp-import-iostat2pcp_5.2.6-1_all.deb
+  *pcp-import-mrtg2pcp_5.2.6-1_all.deb
+  *pcp-import-sar2pcp_5.2.6-1_all.deb
+  *pcp-import-sheet2pcp_5.2.6-1_all.deb
+  *pcp-pmda-infiniband_5.2.6-1_loongarch64.deb
+  *pcp-testsuite_5.2.6-1_loongarch64.deb
+  *python3-docs-theme_2018.2-2_all.deb
+  *python3-eventlet_0.26.1-7_all.deb
+  *python3-minimock_1.2.8-2_all.deb
+  *python3-monotonic_1.5-3_all.deb
+  *python3-pcp_5.2.6-1_loongarch64.deb
+  *python3-pgpy_0.5.3-3_all.deb
+  *python3-pgpy-doc_0.5.3-3_all.deb
+  *python3-ws4py_0.4.2+dfsg1-5_all.deb
+  *python-eventlet-doc_0.26.1-7_all.deb
+  *python-ws4py-doc_0.4.2+dfsg1-5_all.deb

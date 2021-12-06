@@ -1,0 +1,82 @@
+====== RedHat 系发行版安装指南 ======
+目前，有几大常用的龙芯操作系统，包括 [[os:loongnix|Loongnix]] 、 [[os:fedora21|Fedora21]] 、 [[os:fedora28|Fedora28]] 均基于 RedHat 系发行版 。本页面将介绍龙芯平台上 RedHat 系操作系统的安装方法。
+
+===== 下载ISO镜像 =====
+龙梦 Fedora28 系统最新ISO镜像下载地址：
+<WRAP center round download 60%>
+[[http://mirror.lemote.com:8000/fedora/fedora28-live/|http://mirror.lemote.com:8000/fedora/fedora28-live/]]
+</WRAP>
+
+
+龙芯中科 Loongnix 下载页面:
+<WRAP center round download 60%>
+[[http://www.loongnix.org/index.php/Loongnix|http://www.loongnix.org/index.php/Loongnix]]
+</WRAP>
+Loongnix 20190331 下载（龙芯派二代专供）：
+<WRAP center round download 60%>
+[[http://ftp.loongnix.org/loongsonpi/pi_2/OS/loongnix-20190331.iso|http://ftp.loongnix.org/loongsonpi/pi_2/OS/loongnix-20190331.iso]]
+</WRAP>
+
+
+<WRAP center round tip 60%>
+>注1： 一般而言，龙梦版 Fedora28 系统选择最新版下载即可。
+
+>注2：从 live5 开始，龙梦 Fedora28 提供 MATE 和 KDE 两种预装桌面环境的系统，有对界面美观需求更高的可用 KDE 版，但建议插上独显再使用 KDE 版，以获得更好的体验效果。
+
+>注3：建议龙芯派二代用户下载 Loongnix 20190331 版系统，且不要升级内核，以免无法启动。
+</WRAP>
+<WRAP center round important 60%>
+下载完成后建议对系统镜像文件进行校验以确保文件正确性，下载文件时一般提供文件的SHA校验值或MD5校验值。
+</WRAP>
+
+===== 从实体存储介质引导安装 =====
+==== USB 安装盘制作 ====
+<WRAP center round tip 60%>
+>注：制作安装盘需要一个真实容量 4GiB以上（如要安装 Loongnix server Lorax 版，建议准备 8GiB ）的可靠的 U 盘，且安装时会抹掉 U 盘全部数据。我们建议您专门准备一个 U 盘作系统安装用途。
+</WRAP>
+<WRAP center round important 60%>
+由于龙芯并没有使用类似于 x86 的 MBR 分区表头进行引导，其启动盘的写入方法和 x86 平台也不尽相同。所有的 ISO 安装镜像皆为块设备的 RAW 镜像。我们建议您使用 Linux 下的 dd 命令，或者 Windows 下的 Win32DiskImager 工具写入。
+</WRAP>
+
+=== Windows 环境下 ===
+Win32DiskImager工具下载：
+<WRAP center round download 60%>
+[[https://nchc.dl.sourceforge.net/project/win32diskimager/Archive/win32diskimager-1.0.0-install.exe|安装版]]|{{ :guide:win32diskimager-1.0.0-binary.zip | 免安装版}}|{{ :guide:win32diskimager-1.0.0-src.zip | 源代码}}
+</WRAP>
+
+=== Linux 环境下 ===
+Linux下的制作启动盘命令：\\ 
+<code>
+$sudo dd if=/path_to_iso_file of=/dev/sdX bs=8MiB    #其中，“/dev/sdX”为U盘的虚拟设备文件，“sdX”应用U盘具体编号如sdb来代替
+$sudo sync    #同步一下磁盘，保证系统镜像文件完全被写入U盘
+</code>
+注意，执行dd命令的时候不会显示进度或写入速度等信息。若要使dd命令显示进度，需在命令后添加参数“status=progress”。具体例子如下。
+<code>
+$sudo dd if=Fedora28_for_loongson-KDE-Live-5.1.iso of=/dev/sdc bs=8MiB status=progress
+</code>
+
+<WRAP center round alert 60%>
+**请不要在写入时拔插 U 盘！此举可能会永久损坏 U 盘！**
+</WRAP>
+<WRAP center round important 60%>
+>注：老主板（指搭载3A4000以前的主板，不包括3A4000）的固件可能因 USB 驱动问题可能会出现不能识别U盘的问题，故建议在写入操作系统前先插U盘确认固件是否能识别 U 盘。
+</WRAP>
+
+==== 光盘安装制作 ====
+
+==== Lorax 版制作 ====
+
+==== 上机安装 ====
+=== 系统安装存储介质分区设置 ===
+
+<WRAP center round info 60%>
+安装Linux操作系统时，设置磁盘分区与挂载点是个不可避免的问题。若您实在不想面对这个问题，请在安装系统时选择清空整个磁盘并在整个磁盘上自动分区；若您没有在龙芯上安装操作系统的经验并且打算手动分区，请耐心读下去。\\ 
+Linux系统只能利用已挂载的磁盘分区，磁盘分区与挂载点的设置就是设置把那些系统目录单独设置一个磁盘分区并且在启动操作系统时自动挂载。而如何设置磁盘分区与挂载点，与主板固件有关。类似X86计算机上有Legacy BIOS与UEFI两种固件对应两种分区与挂载点设置规则，龙芯上也有多种固件对应不同的分区与挂载点设置。\\ 
+龙芯上的固件有PMON、昆仑固件、基于tianocore的UEFI实现等多种，即使是同一种固件，不同的版本之间也有差异。总的来说，可以大致分为两类：一类是PMON、龙芯3A/B3000及更早的龙芯CPU上的以前版本的昆仑固件（昆仑固件3.0及以前版本），我们且称之为Legacy（下称Legacy）；一类是龙芯3A/B4000上的昆仑固件（昆仑固件4.0及以后版本，已实现UEFI）、基于tianocore的UEFI等，我们且称之为UEFI。这样表述起来有些复杂，可以这样理解：如果CPU是龙芯3A3000及更老的处理器，按照下文中Legacy的方式处理；如果CPU是龙芯3A4000及更新的处理器 ，按照下文中UEFI的方式处理。\\ 
+在Legacy固件上，安装系统时首先需要把硬盘第一主分区设置为''/boot''挂载点，文件系统为ext3。这是因为Linux系统中''/boot''目录放着系统内核，而PMON仅支持从磁盘第一主分区加载内核等二进制文件，并且早期版本的PMON支持ext2/ext3文件系统却不支持ext4文件系统。因''/boot''分区主要放置Linux内核与内核虚拟映像文件，''/boot''分区不需要太大，2GiB足矣。''/boot''分区后应设置''/''分区，然后可根据自身需求决定是否单独设置''/home''等挂载点。在所有挂载点中，''/boot''与''/''两个分区为必选。\\ 
+在新UEFI固件上，不需要单独设置''/boot''挂载点，但必须设置''/boot/efi''挂载点。''/boot/efi''挂载点应挂载磁盘的ESP分区，文件系统应选择''EFI System Partition''。虽然选择的文件系统是''EFI System Partition''，其实ESP分区的文件系统是FAT16或者FAT32，若安装操作系统时对ESP分区勾选“格式化”，程序会自动把ESP分区格式化为FAT16文件系统。ESP分区主要放着引导操作系统的文件，Fedora系统上还会把grub的配置文件、相关字体文件放在ESP分区，因此ESP分区也没有必要设置太大，256MiB的大小正合适。此外，''/''分区永远是必选的分区，建议把磁盘第一分区挂载点设置为''/boot/efi''，磁盘第二分区挂载点设置为''/''；而是否单独设置''/home''等分区与其他分区挂载点设置多大，根据自身需求设置。\\ 
+无论是新的UEFI固件还是Legacy固件，都建议单独设置swap分区（交换分区）。swap分区即Linux系统的虚拟内存，虽然现在内存足够大，但依然建议根据需求设置虚拟内存以保证系统正常运行。对于普通用户来说，swap分区设置2GiB足够使用。若不愿意单独设置一个分区来当虚拟内存，建议您在完成系统安装后手动创建swap文件并设置开机自动挂载swap文件。按照笔者强迫症的习惯，喜欢把swap分区设置为硬盘上的最后一个分区。
+</WRAP>
+
+
+===== 从网络（PXE）安装 =====

@@ -1,0 +1,94 @@
+====== Emulate Loongson On x86 Machine ======
+在x86机器上使用QEMU模拟龙芯。
+
+===== 前言 =====
+QEMU模拟器拥有“TCG” JIT编译器，可以跨架构模拟CPU。Jiaxun Yang为TCG增加了部分龙芯指令的模拟，现在在QEMU模拟器中，可以完全模拟所有龙芯3A1000的公开指令(Loongson-EXT, Loongson-MMI)，虚拟机器的设计则基于Lemote的KVM Guest机器。
+
+由于其跨架构的特性，模拟性能较低，因此仅适用于部分开发测试用途。
+
+===== 软件版本与状态 =====
+==== QEMU ====
+  * [[https://github.com/flygoat/qemu|FlyGoat's Fork]] – OK
+  * Mainline – W.I.P.
+
+==== Guest Kernel ====
+  * [[http://dev.lemote.com:8000/cgit/?p=linux-official.git|Lemote 5.4]] – OK (Integrated by Fedora28 Live6)
+  * Mainline – W.I.P.
+
+===== Guide =====
+本教程基于Linux AMD64，对于其他平台的支持目前尚不完善。
+
+==== 编译QEMU (可选) ====
+你可以自行编译QEMU，也可以使用Jiaxun Yang提供的预编译版本，可以在此下载：
+
+<WRAP center round download 60%>
+[[http://ftp.godson.ac.cn/users/~flygoat/qemu-loongson-amd64]]
+</WRAP>
+
+编译过程以及各个发行版下的依赖请参考QEMU的[[https://wiki.qemu.org/Hosts/Linux#Fedora_Linux_.2F_Debian_GNU_Linux_.2F_Ubuntu_Linux_.2F_Linux_Mint_distributions|官方指引]]，这里仅列出参考命令：
+<code>
+# Get source from FlyGoat's Fork
+git clone https://github.com/flygoat/qemu.git
+# Switch to the QEMU root directory
+cd qemu
+# Configure QEMU for mips64el only - faster build
+# Add "CONFIG_QXL=y" to file "default-configs/mips64el-softmmu.mak"
+./configure --target-list=mips64el-softmmu
+# Build in parallel - my system has 6 CPU cores
+make -j6
+</code>
+你需要编辑文件 “default-configs/mips64el-softmmu.mak”, 加入以下设定:
+<code>
+CONFIG_QXL=y
+</code>
+==== 获取虚拟磁盘镜像 ====
+你可以在此处获得[[OS:Fedora28]]虚拟磁盘的镜像。
+<code>
+http://dev.lemote.com:8000/files/fedora28-qemu/
+</code>
+用户名: lemote 密码: loongson
+
+其它系统暂时没有现成文件，可自行制作。
+
+其中所需要的文件是以qcow结尾的磁盘镜像，vmlinuz内核二进制，initramfs内存盘文件以及与镜像对应的启动cmdline。
+
+==== 运行 ====
+将QEMU二进制(qemu-system-mips64el)，固件文件夹(pc-bios)以及虚拟磁盘文件放到同一目录下，然后执行:
+<code>
+./qemu-system-mips64el -M loongson3 -vga qxl -serial stdio \
+                -device qemu-xhci,id=xhci -device usb-tablet,bus=xhci.0 \
+                -kernel vmlinuz-5.4.38-1.fc28.lemote.mips64el \
+                -initrd initramfs-5.4.38-1.fc28.lemote.mips64el.img \
+                -append "console=ttyS0,115200 root=/dev/vda3" \
+                -drive file=./Fedora28-for-loongson-live6-mate.qcow2,if=virtio \
+                -L ./pc-bios
+</code>
+会弹出一个窗口，窗口中的是模拟器的显示输出，而当前终端中的是模拟器的串口tty输出。
+
+由于模拟运行较慢，开机和登录系统时可能有较长时间的黑屏，这是正常现象，此时可以观察串口输出。在较慢的宿主机上，开机可能要耗费长达三分钟。
+
+在 -append 后加入 “systemd.unit=runlevel3.target” 可以直接进入控制台界面，避免进入图形界面:
+<code>
+                -append "console=ttyS0,115200 root=/dev/vda3 systemd.unit=runlevel3.target" \
+</code>
+如出现以下错误：
+<code>
+qemu-system-mips64el: -M loongson3: unsupported machine type
+Use -machine help to list supported machines
+</code>
+可查看当前支持的机型，作出相应的调整:
+<code>
+./qemu-system-mips64el -machine help
+Supported machines are:
+boston               MIPS Boston
+fulong2e             Fuloong 2e mini pc (alias of fuloong2e)
+fuloong2e            Fuloong 2e mini pc
+loongson3-virt       Generic Loongson-3 Virtulization Platform      <-------
+magnum               MIPS Magnum
+malta                MIPS Malta Core LV (default)
+mips                 mips r4k platform (deprecated)
+mipssim              MIPS MIPSsim platform
+none                 empty machine
+pica61               Acer Pica 61
+</code>
+QEMU的具体参数设定及含义请参考官方文档。

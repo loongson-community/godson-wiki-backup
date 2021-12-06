@@ -1,0 +1,12 @@
+====== Loongbian ======
+Loongbian 是龙芯中科嵌入式部主导的为龙芯教育派 (龙芯派Lite) 研发的操作系统，后期有了 Loongson64C/G (3A) 平台的安装包。
+
+<WRAP center round important 60%>
+注意：在 Loongson64C/R 平台上安装 Loongbian 需要最新的 pmon 固件，昆仑固件现在 (20210207) 未知 。
+</WRAP>
+
+下载链接：
+<WRAP center round download 60%>
+https://mirrors.teach.com.cn/installer/
+https://mirrors.wsyu.edu.cn/loongson/installer/
+</WRAP>
