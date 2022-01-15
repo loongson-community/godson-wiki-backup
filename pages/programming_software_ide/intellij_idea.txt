@@ -2,11 +2,9 @@
 
 IntelliJ IDEA 是由 JetBrains 公司使用 Java 编程语言开发的 Java 及 JVM 相关语言的集成开发环境。龙芯公司基于OpenJDK自主研发的MIPS版本——龙芯OpenJDK发布后，大量 Java 开发的软件可以在龙芯上运行。
 
-龙芯OpenJDK稳定版只有8，13依然是预览版，而 JetBrains 全家桶从 2020.2 开始最低只支持 OpenJDK11。测试后发现 2019.3.5 版可以在龙芯OpenJDK8上很好地运行，而更新的版本即使声称支持 OpenJDK8 ，启动时依然会发生各种运行时错误。
+龙芯仍在支持的 OpenJDK 版本有 8、11 和 13 ，其状态分别为 LTS、 EA 和 EA ，其中 13 只支持 mips64el 体系结构，尽管 JetBrains 全家桶从 2020.2 开始，才提出运行时依赖的 OpenJDK 版本 >= 11 的要求，但经测试后发现最高只有 2019.3.5 版本可以在 OpenJDK8 上很好地运行。
 
-OpenJDK8 可以使用的最新 IntelliJ IDEA 版本为 2019.3.5 ，运行更高的版本需要安装 OpenJDK13 预览版。
-
-=====安装Java=====
+=====安装 OpenJDK =====
 
 <WRAP center round important 60%>
 根据龙芯开源社区的发行注记，目前，基于OpenJDK 13的龙芯平台Java环境处于EA阶段，EA代表“提前获取”(Early Access)，也就是说，EA 是软件即将发布的版本的预览版本。此版本中可能包含许多新功能和缺陷补丁，并且由于是预览版，也可能包含一些意外的问题。建议不要在生产环境中使用此预览版。
@@ -16,26 +14,46 @@ OpenJDK8 可以使用的最新 IntelliJ IDEA 版本为 2019.3.5 ，运行更高�
 请不要试图直接复制粘贴本页的任何命令，你必须清楚自己在做什么并对自己运行的命令负责！
 </WRAP>
 
-====Fedora28====
+====OpenJDK 8====
+
+OpenJDK8 直接从软件源中安装即可。
+
+Loongnix1.0 下可以参考龙芯开源社区的[[http://www.loongnix.cn/index.php/JAVA%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E|JAVA安装说明]]
 
 Fedora28 下可以直接从软件源中安装 OpenJDK8：
 
-  sudo dnf install java
+  $ sudo dnf install java
 
-OpenJDK13 则需要手动配置，二进制需要从龙芯开源社区的[[http://www.loongnix.org/index.php/Java|Java页面]]下载。下面的命令示例中，安装目录请自行更改。
+Loongnix20 下可以直接从软件源中安装 OpenJDK8：
 
-  * 安装 OpenJDK13
+  $ sudo apt-get install default-jdk
 
-  sudo tar zxf OpenJDK13.tar.gz -C /opt
+Debian 软件源中当前（2022/1/14）提供的 OpenJDK 版本为 11 和 17 ，但是均不能启动 Idea 。所以需要按照下面的方法手动安装龙芯提供的 OpenJDK11 或 13 。
 
-  * 配置环境变量
+====OpenJDK 11====
 
-  export JAVA_HOME=/opt/jdk-13-openjdk/bin/
-  export PATH=${PATH}:JAVA_HOME
+请从 [[http://www.loongnix.cn/index.php/JDK11|下载页面]] 下载 OpenJDK11 的 tarball 。
 
-  * 设置alternatives
+下面的安装说明部分摘自龙芯开源社区的[[http://www.loongnix.cn/index.php/JAVA%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E|JAVA安装说明]]
 
-  sudo alternatives --install /usr/bin/java java /opt/java-13-openjdk/bin/java 100 \
+===解包===
+
+  $ sudo tar zxf DOWNLOADED-JDK.tar.gz -C /opt
+
+===配置环境变量===
+
+  $ export JAVA_HOME=/opt/DOWNLOADED-JDK-DIR-NAME
+  $ export PATH=${JAVA_HOME}/bin/:${PATH}
+
+注意 JAVA_HOME 是 jdk 所在的目录，其目录中应包含 bin 目录。如果需要每次运行都默认使用该 jdk ，则根据你所使用的 shell 将上述两句命令添加在其配置中，如 bash 加在 ~/.bashrc 中、 zsh 加在 ~/.zshrc 中。
+
+另外事实上只需要设置 JAVA_PATH ， Idea 就可以在启动脚本中识别到该 jdk 。这是因为 Idea 的启动脚本在扫描可用的 jdk 时， JAVA_PATH 的优先级高于 PATH 。
+
+===设置 alternatives===
+
+这部分**通常并不被需要**，只在需要使用 alternatives 来切换版本的情况下供参考。另外这部分命令仅在 Fedara28 上测试过。
+
+  $ sudo alternatives --install /usr/bin/java java /opt/java-13-openjdk/bin/java 100 \
   		--slave /usr/lib/jvm/jre jre /opt/java-13-openjdk \
   		--slave /usr/bin/jjs jjs /opt/java-13-openjdk/bin/jjs \
   		--slave /usr/bin/keytool keytool /opt/java-13-openjdk/bin/keytool \
@@ -43,7 +61,7 @@ OpenJDK13 则需要手动配置，二进制需要从龙芯开源社区的[[http:
   		--slave /usr/bin/rmid rmid /opt/java-13-openjdk/bin/rmid \
   		--slave /usr/bin/rmiregistry rmiregistry /opt/java-13-openjdk/bin/rmiregistry \
   		--slave /usr/bin/unpack200 unpack200 /opt/java-13-openjdk/bin/unpack200
-  sudo alternatives --install /usr/bin/javac javac /opt/java-13-openjdk/bin/javac 100 \
+  $ sudo alternatives --install /usr/bin/javac javac /opt/java-13-openjdk/bin/javac 100 \
   		--slave /usr/bin/jar jar /opt/java-13-openjdk/bin/jar \
   		--slave /usr/bin/jarsigner jarsigner /opt/java-13-openjdk/bin/jarsigner \
   		--slave /usr/bin/javadoc javadoc /opt/java-13-openjdk/bin/javadoc \
@@ -62,22 +80,32 @@ OpenJDK13 则需要手动配置，二进制需要从龙芯开源社区的[[http:
   		--slave /usr/bin/serialver serialver /opt/java-13-openjdk/bin/serialver \
   		--slave /usr/lib/jvm/java java_sdk /opt/java-13-openjdk
 
-  * 切换java版本
+之后可以使用 alternatives 切换 OpenJDK 版本：
 
   sudo update-alternatives --config java
   sudo update-alternatives --config javac
 
-  * 查看版本信息
+===查看版本信息===
 
-  java -version
-  javac -version
+如果设置了 PATH 则可以使用下面的命令检验 OpenJDK 版本：
 
-====Loongnix====
+  $ java -version
+  $ javac -version
 
-Loongnix 下可以参考龙芯开源社区的[[http://www.loongnix.org/index.php/JAVA%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E|JAVA安装说明]]
+如果只设置了 JAVA_HOME ：
 
+  $ ${JAVA_HOME}/bin/java -version
+  $ ${JAVA_HOME}/bin/javac -version
 
-=====从官网获取安装包=====
+====OpenJDK 13====
+
+OpenJDK 13 只支持 mips64el 体系结构。
+
+请进入 [[http://www.loongnix.cn/index.php/JDK13-MIPS64|下载页面]] 或直接点击 [[http://ftp.loongnix.cn/toolchain/java/openjdk13/loongson13-ea-jdk13+33-20190916-linux-loongson3a.tar.gz|下载链接]] 下载 OpenJDK13 的 tarball 。
+
+安装过程参考 OpenJDK 11 。
+
+=====获取 Idea=====
 
 最新的安装包可以在 IntelliJ IDEA [[https://www.jetbrains.com/zh-cn/idea/|主页]]获得，较老的安装包可以在“[[https://www.jetbrains.com/idea/download/other.html|其他版本]]”下获得。如果没有 IntelliJ IDEA 正版许可证建议下载 Community Edition 。
 
@@ -85,15 +113,15 @@ Loongnix 下可以参考龙芯开源社区的[[http://www.loongnix.org/index.php
 
 解压缩软件包：
 
-  tar xf ideaIC.tar.gz -C <安装目录>
+  $ tar xf ideaIC.tar.gz -C <安装目录>
 
 运行：
 
-  ./<安装目录>/bin/idea.sh
+  $ ./<安装目录>/bin/idea.sh
 
-依照提示一步一步操作即可，建议禁用 Android Support 。
+老版本依照提示一步一步操作即可，建议禁用 Android Support ；最新版本应该可以直接进入到创建工程的界面。
 
-=====兼容性问题=====
+=====关于兼容性问题=====
 
 ====fsNotifier====
 
@@ -101,7 +129,7 @@ fsNotifier 被用来检测文件变化，由于其以二进制形式发布，首
 
 首先下载 fsNotifier 的[[https://github.com/JetBrains/intellij-community/blob/master/native/fsNotifier/linux/|源代码]]（可以逐个复制代码），运行下面的命令编译：
 
-  ./make.sh
+  $ ./make.sh
 
 复制二进制 fsnotifier-mips64 到 IntelliJ IDEA 软件的 bin 目录下（和自带的fsnotifier和fsnotifier64在同级目录），在软件菜单中依次选择 “Help->Edit Custom Properties” ，最后在打开的文本编辑器中保存下面的配置即可：
 
@@ -109,18 +137,18 @@ fsNotifier 被用来检测文件变化，由于其以二进制形式发布，首
 
 ====pty4j-native====
 
-这个部分只适用于 2019 等老版本，最新版本不需要。
+这个部分**在最新版本不被需要**，只适用于 2019 以及之前的版本。如果不确定你的 Idea 是否有相关问题，请使用 Idea 打开一个工程，在下边的工具栏点击 Terminal ，如果能不能正常打开终端（正常应该能打开本地终端）则说明有问题。
 
 pty4j-native 被用来从 IDE 中打开内嵌的终端，首次运行时打开 “Terminal” 窗口可以看到相关的错误信息。这是因为 2019 版只提供了 arm 、 ppc 和 x86 的 pty4j 二进制，我们需要自行获取 mips64el 的二进制。
 
 首先克隆整个项目，指定 depth 加快克隆速度：
 
-  git clone --depth=1 https://github.com/JetBrains/pty4j.git
+  $ git clone --depth=1 https://github.com/JetBrains/pty4j.git
 
 在 os/linux/mips64el 目录中可以看到已经预编译好的二进制，复制其到 lib/pty4j-native/linux/x86_64 中覆盖原有的二进制即可。
 
 ====从旧版本升级====
 
-如果升级了 OpenJDK 到 13 ，那么可以将可以从老的、兼容 OpenJDK8 的版本直接升级到最新版。由于用自编译的 mips64el 替换了原来 x86_64 的 libpty.so ，在升级时会出现该文件校验错误的警告，忽略即可。
+如果升级了 OpenJDK 到 13 ，那么可以将可以从兼容 OpenJDK8 的老版本直接升级到最新版，前面提到新版的 Idea 已经提供了 mips64el 的 libpty.so 。由于之前用自编译的 libpty.so 替换了 x86_64 的二进制，在升级的过程中会出现该文件校验错误的警告，忽略即可，这通常在事实上不会出现问题。
 
-另外，不知道为何升级后 mips64el 目录下的 libpty.so 是错误的，而从官网直接下载的软件包并没有相关问题。只需要用正确的 libpty.so 替换即可。
+但如果你不幸发生了错误，如升级后不能使用 terminal 了，则你 mips64el 目录下的 libpty.so 可能是不能正常工作的，这可以从官网下载最新的软件包重新安装或只用新软件包对 libpty.so 进行替换即可。
