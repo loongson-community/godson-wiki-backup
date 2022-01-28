@@ -1,8 +1,10 @@
 ======IntelliJ IDEA======
 
-IntelliJ IDEA 是由 JetBrains 公司使用 Java 编程语言开发的 Java 及 JVM 相关语言的集成开发环境。龙芯公司基于OpenJDK自主研发的MIPS版本——龙芯OpenJDK发布后，大量 Java 开发的软件可以在龙芯上运行。
+IntelliJ IDEA 是由 JetBrains 公司使用 Java 编程语言开发的 Java 及 JVM 相关语言的集成开发环境。龙芯公司基于 OpenJDK 自主研发的 MIPS 版本——龙芯 OpenJDK 发布后，大量 Java 开发的软件可以在龙芯上运行。
 
-龙芯仍在支持的 OpenJDK 版本有 8、11 和 13 ，其状态分别为 LTS、 EA 和 EA ，其中 13 只支持 mips64el 体系结构，尽管 JetBrains 全家桶从 2020.2 开始，才提出运行时依赖的 OpenJDK 版本 >= 11 的要求，但经测试后发现最高只有 2019.3.5 版本可以在 OpenJDK8 上很好地运行。
+龙芯 OpenJDK 可以查看[[http://www.loongnix.cn/index.php/Java|龙芯开源社区]]。
+
+龙芯仍在支持的 OpenJDK 版本有 8、11、13 和 17 ，其状态分别为 LTS、 LTS、 EA 和 LTS ，其中 13 只支持 mips64el 体系结构，尽管 JetBrains 全家桶从 2020.2 开始，才提出运行时依赖的 OpenJDK 版本 >= 11 的要求，但经测试后发现最高只有 2019.3.5 版本可以在 OpenJDK8 上很好地运行。
 
 =====安装 OpenJDK =====
 
@@ -16,7 +18,7 @@ IntelliJ IDEA 是由 JetBrains 公司使用 Java 编程语言开发的 Java 及 
 
 ====OpenJDK 8====
 
-OpenJDK8 直接从软件源中安装即可。
+OpenJDK8 直接从软件源中安装即可。如果想要手动安装，请从 [[http://www.loongnix.cn/index.php/JDK8|下载页面]] 下载 tarball 并参考后面 OpenJDK11 的方法安装。
 
 Loongnix1.0 下可以参考龙芯开源社区的[[http://www.loongnix.cn/index.php/JAVA%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E|JAVA安装说明]]
 
@@ -105,6 +107,15 @@ OpenJDK 13 只支持 mips64el 体系结构。
 
 安装过程参考 OpenJDK 11 。
 
+
+====OpenJDK 17====
+
+请进入 [[http://www.loongnix.cn/index.php/JDK17|下载页面]] 下载 OpenJDK17 的 tarball 。
+
+安装过程参考 OpenJDK 11 。
+
+注意 OpenJDK 17 的一些新特性不被支持，无法直接启动 idea ，但是可以作为开发使用。
+
 =====获取 Idea=====
 
 最新的安装包可以在 IntelliJ IDEA [[https://www.jetbrains.com/zh-cn/idea/|主页]]获得，较老的安装包可以在“[[https://www.jetbrains.com/idea/download/other.html|其他版本]]”下获得。如果没有 IntelliJ IDEA 正版许可证建议下载 Community Edition 。
@@ -137,7 +148,7 @@ fsNotifier 被用来检测文件变化，由于其以二进制形式发布，首
 
 ====pty4j-native====
 
-这个部分**在最新版本不被需要**，只适用于 2019 以及之前的版本。如果不确定你的 Idea 是否有相关问题，请使用 Idea 打开一个工程，在下边的工具栏点击 Terminal ，如果能不能正常打开终端（正常应该能打开本地终端）则说明有问题。
+如果你使用 mips64el 体系结构，这个部分在最新版本不被需要，只适用于 2019 以及之前的版本；如果你使用 loongarch64 ，那么你需要解决相关的兼容性问题。如果不确定你的 Idea 是否有相关问题，请使用 Idea 打开一个工程，在下边的工具栏点击 Terminal ，如果能不能正常打开终端（正常应该能打开本地终端）则说明有问题。
 
 pty4j-native 被用来从 IDE 中打开内嵌的终端，首次运行时打开 “Terminal” 窗口可以看到相关的错误信息。这是因为 2019 版只提供了 arm 、 ppc 和 x86 的 pty4j 二进制，我们需要自行获取 mips64el 的二进制。
 

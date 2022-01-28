@@ -1,5 +1,5 @@
 drwxr-xr-x    2 godsonac   godsonac         4096 Feb 22  2021 .
-drwxr-xr-x   19 godsonac   godsonac         4096 Jan 15 01:19 ..
+drwxr-xr-x   19 godsonac   godsonac         4096 Jan 27 19:49 ..
 -rw-r--r--    1 godsonac   godsonac           81 Feb 22  2021 clion.changes
 -rw-r--r--    1 godsonac   godsonac            1 Feb 22  2021 clion.indexed
 -rw-r--r--    1 godsonac   godsonac         2055 Feb 22  2021 clion.meta
@@ -12,9 +12,9 @@ drwxr-xr-x   19 godsonac   godsonac         4096 Jan 15 01:19 ..
 -rw-r--r--    1 godsonac   godsonac          198 Feb 21  2021 goland.changes
 -rw-r--r--    1 godsonac   godsonac            1 Feb 21  2021 goland.indexed
 -rw-r--r--    1 godsonac   godsonac         2584 Feb 21  2021 goland.meta
--rw-r--r--    1 godsonac   godsonac          924 Jan 14 05:33 intellij_idea.changes
--rw-r--r--    1 godsonac   godsonac            1 Jan 14 05:33 intellij_idea.indexed
--rw-r--r--    1 godsonac   godsonac         2642 Jan 14 05:33 intellij_idea.meta
+-rw-r--r--    1 godsonac   godsonac         1150 Jan 27 00:57 intellij_idea.changes
+-rw-r--r--    1 godsonac   godsonac            1 Jan 27 00:57 intellij_idea.indexed
+-rw-r--r--    1 godsonac   godsonac         2801 Jan 27 00:57 intellij_idea.meta
 -rw-r--r--    1 godsonac   godsonac           87 Sep 30  2019 qt_creator.changes
 -rw-r--r--    1 godsonac   godsonac            1 Sep 30  2019 qt_creator.indexed
 -rw-r--r--    1 godsonac   godsonac         1102 Sep 30  2019 qt_creator.meta

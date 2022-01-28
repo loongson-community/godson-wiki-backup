@@ -7,3 +7,5 @@
 1614558924	2408:8414:c90:4b0:a883:ee19:e9a7:3673	E	programming_software_ide:intellij_idea	weilinfox	添加警告		170
 1642166911	125.113.53.138	E	programming_software_ide:intellij_idea	weilinfox			2039
 1642167221	125.113.53.138	e	programming_software_ide:intellij_idea	weilinfox	修改小标题		0
+1643270006	125.113.46.236	E	programming_software_ide:intellij_idea	weilinfox	添加 openjdk17 说明		549
+1643273864	125.113.46.236	e	programming_software_ide:intellij_idea	weilinfox	更改 OpenJDK 11 和 17 状态为 LTS		94
