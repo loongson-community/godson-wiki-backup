@@ -1,1 +1,11 @@
 ====== Firefox浏览器 ======
+
+目前还不支持loongarch64。但是相关工作正在推进：
+
+https://bugzilla.mozilla.org/buglist.cgi?quicksearch=loongarch
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1730353
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1746335
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1757272
