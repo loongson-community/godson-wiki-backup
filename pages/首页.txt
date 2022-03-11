@@ -120,6 +120,7 @@ This site was established by Loongson user group. Mainly for information sharing
 ==== 聊天频道（Chat Channels）====
   * IRC freenode #loongson (English Only)
   * Telegram [[http://t.me/loongson_users|@loongson_users]]
+  * Matrix #loongarch:matrix.loongarch.org
 ==== 用户博客 (Users' Blogs) ====
   * [[http://www.loongson.xyz/|我要成为铁杆龙芯粉]]
   
