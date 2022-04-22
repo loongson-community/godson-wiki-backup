@@ -1,8 +1,8 @@
 -rwxr-xr-x    1 godsonac   godsonac         1072 Feb  7  2021 %E6%95%99%E7%A8%8B%E5%88%97%E8%A1%A8.txt
--rw-r--r--    1 godsonac   godsonac         4690 Oct 23 21:53 %E8%B5%84%E6%BA%90%E5%88%97%E8%A1%A8.txt
+-rw-r--r--    1 godsonac   godsonac         4690 Oct 23  2021 %E8%B5%84%E6%BA%90%E5%88%97%E8%A1%A8.txt
 -rwxr-xr-x    1 godsonac   godsonac         1146 Feb 22  2021 %E8%BD%AF%E4%BB%B6%E5%88%97%E8%A1%A8.txt
 -rwxr-xr-x    1 godsonac   godsonac         6370 Mar 10 01:36 %E9%A6%96%E9%A1%B5.txt
-drwxr-xr-x   19 godsonac   godsonac         4096 Oct 23 22:10 .
+drwxr-xr-x   19 godsonac   godsonac         4096 Oct 23  2021 .
 drwxr-xr-x   12 godsonac   godsonac         4096 Dec  6 06:26 ..
 -rw-r--r--    1 godsonac   godsonac         1692 Feb  6  2021 about.txt
 drwxr-xr-x    2 godsonac   godsonac          100 Feb  7  2021 common_software
@@ -23,9 +23,9 @@ drwxr-xr-x    2 godsonac   godsonac           36 Oct 30  2018 playground
 -rwxr-xr-x    1 godsonac   godsonac         2814 Oct 30  2018 pmon.txt
 drwxr-xr-x    2 godsonac   godsonac          147 Feb 22  2021 programming_software_ide
 drwxr-xr-x    2 godsonac   godsonac           34 Feb  4  2021 qemu
-drwxr-xr-x    2 godsonac   godsonac           45 Oct 23 22:10 software_source
-drwxr-xr-x    2 godsonac   godsonac           65 Oct 23 22:23 user
--rw-r--r--    1 godsonac   godsonac          182 Oct 23 22:23 users.txt
+drwxr-xr-x    2 godsonac   godsonac           45 Oct 23  2021 software_source
+drwxr-xr-x    2 godsonac   godsonac           65 Oct 23  2021 user
+-rw-r--r--    1 godsonac   godsonac          182 Oct 23  2021 users.txt
 drwxr-xr-x    2 godsonac   godsonac           32 Oct 30  2018 vendor
 drwxr-xr-x    2 godsonac   godsonac           30 Feb 24  2020 virtual_machine_software
 drwxr-xr-x    2 godsonac   godsonac           63 Dec  6 06:26 wiki
