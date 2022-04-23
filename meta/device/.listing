@@ -1,8 +1,8 @@
-drwxr-xr-x    2 godsonac   godsonac         4096 Oct 24 06:53 .
+drwxr-xr-x    2 godsonac   godsonac         4096 Oct 24  2021 .
 drwxr-xr-x   19 godsonac   godsonac         4096 Mar 10 19:22 ..
--rw-r--r--    1 godsonac   godsonac         1011 Oct 24 03:46 lemote_8089.changes
--rw-r--r--    1 godsonac   godsonac            1 Oct 24 03:46 lemote_8089.indexed
--rw-r--r--    1 godsonac   godsonac         2677 Oct 24 03:46 lemote_8089.meta
+-rw-r--r--    1 godsonac   godsonac         1011 Oct 24  2021 lemote_8089.changes
+-rw-r--r--    1 godsonac   godsonac            1 Oct 24  2021 lemote_8089.indexed
+-rw-r--r--    1 godsonac   godsonac         2677 Oct 24  2021 lemote_8089.meta
 -rwxr-xr-x    1 godsonac   godsonac        10818 Feb  7  2021 lemote_a1310.changes
 -rwxr-xr-x    1 godsonac   godsonac            1 Feb  7  2021 lemote_a1310.indexed
 -rwxr-xr-x    1 godsonac   godsonac         5364 Feb  7  2021 lemote_a1310.meta
