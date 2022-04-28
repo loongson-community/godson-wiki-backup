@@ -2,7 +2,7 @@
 安装在龙芯 3A3000 及更早的机子可以参考刘世伟先生的文章：[[https://www.bjlx.org.cn/node/895]]
 
 ===== 用 Debootstrap 安装 =====
-本标题改自于[[https://www.cnblogs.com/weilinfox/|八衛門狸]]的文章《[[https://www.cnblogs.com/weilinfox/p/12468458.html|龙芯 3A4000 安装 Debian10 （via debootstrap）]]》。
+本标题改自于[[https://www.cnblogs.com/weilinfox/|八衛門狸]]的文章《[[https://www.cnblogs.com/weilinfox/p/12468458.html|龙芯 3A4000 安装 Debian10 （via debootstrap）]]》，另外还可以参考该文章的更新《[[https://www.cnblogs.com/weilinfox/p/15813976.html|龙芯 3A4000 安装 Debian stable]]》。
 
 <WRAP center round info 60%>
 本方法在龙芯全平台上通用
