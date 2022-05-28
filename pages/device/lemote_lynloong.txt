@@ -1,0 +1,39 @@
+====== Lemote LynLoong ======
+Lemote Lynloong 是龙梦推出的一体机的英文名称。中文常称灵珑一体机。其有 9001/9002 9003/9013 这几个常见的型号。其中 9001 和 9002 与其他龙芯 2F 产品类似，主要区别在板载 GPU 上。9003 的区别则更大一些。 \\ 
+
+===== 9001/9002 硬件组成 =====
+^硬件名称^芯片型号^参数资料^
+|中央处理器|Loongson 2F|数据手册|
+|南桥芯片|AMD CS5536AD|[[https://wiki.godson.ac.cn/_media/device:cs5536_db.pdf|数据手册]]|
+|板载显示芯片|XGI V2|支持VGA，DVI和svideo输出|
+|板载显存|HY57V281620FTP X 2|两片共32MB|
+|系统BIOS芯片|Flash存储芯片MX29LV040|容量 512KB|
+|内存插槽|笔记本内存插槽，最大支持1G容量|DDR II , 667MHz|
+|板载网络芯片|RTL8110SC|单网络接口|
+|板载声卡芯片|ALC655|全双工|
+
+===== 9003 硬件组成 =====
+^硬件名称^芯片型号^参数资料^
+|中央处理器|Loongson 2F|数据手册|
+|南桥芯片|VIA VT6421A|[[https://www.viatech.com/en/silicon/legacy/peripherals/sata-raid/vt6421a/|产品页面]]|
+|板载显示芯片|慧荣 SM502|支持VGA输出，外接SDRAM|
+|板载显存|HY57V281620FTP X 2|两片共32MB|
+|系统BIOS芯片|Flash存储芯片MX29LV040|容量 512KB|
+|内存插槽|笔记本内存插槽，最大支持1G容量|DDR II , 667MHz|
+|板载网络芯片|RTL8100C|单网络接口|
+|板载声卡芯片|ALC655|全双工|
+
+===== 9001/9002 内核与系统支持 =====
+
+====== OpenBSD 支持 ======
+参见 [[https://www.openbsd.org/loongson.html|OpenBSD/Loongson]] ，对 9001/9002 有完整的支持，但 framebuffer 目前由于 PMON 限制，固定在 1368x768x16 上。但由于设备不足， OpenBSD/Loongson 在 OpenBSD 7.0 后已经停止支持。
+
+
+
+===== 9003 内核与系统支持 =====
+由于 9003 硬件的特殊性，没有受到主线内核的支持。可用的内核版本停留在 2.6.27 上。因而，目前没有现代发行版支持 9003 。目前能在 9003 上运行的，是刘工版 Debian 6 和原版的基于 Debian 5 的共创操作系统。 \\
+Linux 内核： https://github.com/loongson-community/linux-legacy ，branch 为 lemote-9003-2.6.27.1 \\
+Debian 6： http://www.anheng.com.cn/loongson/install/lynloong_2f_9003/lynloong_debian6_install.tar.gz \\
+
+
+
